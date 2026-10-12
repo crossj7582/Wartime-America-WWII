@@ -3,14 +3,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arsenal of Democracy | Home Front Command</title>
 <style>
 :root {
   --navy:#102b46;
   --red:#963326;
   --gold:#b18738;
-  --cream:#f8f3e7;
   --paper:#fffdf7;
   --ink:#202a35;
   --green:#35674b;
@@ -41,7 +40,6 @@ header {
   font-family:Georgia,serif;
   font-size:clamp(20px,3vw,34px);
   font-weight:bold;
-  letter-spacing:1px;
 }
 .header-small { font-size:13px; line-height:1.6; }
 main {
@@ -59,7 +57,6 @@ main {
 h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; }
 h1 { font-size:clamp(30px,5vw,48px); margin:12px 0; color:var(--navy); }
 h2 { color:var(--navy); }
-h3 { margin-bottom:8px; }
 .eyebrow {
   text-transform:uppercase;
   letter-spacing:2px;
@@ -84,7 +81,7 @@ button {
   font-size:16px;
   font-weight:bold;
 }
-button:focus-visible, input:focus-visible {
+button:focus-visible,input:focus-visible {
   outline:3px solid var(--gold);
   outline-offset:3px;
 }
@@ -119,13 +116,15 @@ input {
   grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr);
   gap:20px;
 }
+
+/* INDIVIDUAL CHALLENGE IMAGE */
 .artwork {
   width:100%;
   aspect-ratio:3 / 2;
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
   background-color:#e8e1d2;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
   border:1px solid #c7b58e;
   border-radius:5px;
   margin:18px 0;
@@ -239,7 +238,6 @@ input {
   font-weight:bold;
   margin:10px 0;
 }
-.small { font-size:14px; line-height:1.6; }
 footer { text-align:center; padding:20px; color:#5c584f; font-size:12px; }
 @media(max-width:800px) {
   .mission-layout { grid-template-columns:1fr; }
@@ -247,7 +245,7 @@ footer { text-align:center; padding:20px; color:#5c584f; font-size:12px; }
 }
 @media print {
   body { background:white; }
-  header, footer, .no-print, #startScreen, #gameScreen {
+  header,footer,.no-print,#startScreen,#gameScreen {
     display:none !important;
   }
   main { margin:0; max-width:none; padding:0; }
@@ -257,7 +255,6 @@ footer { text-align:center; padding:20px; color:#5c584f; font-size:12px; }
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
     <div class="brand">★ ARSENAL OF DEMOCRACY</div>
@@ -269,131 +266,130 @@ footer { text-align:center; padding:20px; color:#5c584f; font-size:12px; }
 </header>
 
 <main>
-  <section id="startScreen" class="panel">
-    <div class="eyebrow">Presidential Mission Briefing</div>
-    <h1>America Must Mobilize!</h1>
+<section id="startScreen" class="panel">
+  <div class="eyebrow">Presidential Mission Briefing</div>
+  <h1>America Must Mobilize!</h1>
+  <p class="story">
+    December 1941. The United States has entered World War II.
+    President Franklin D. Roosevelt needs your help to organize the
+    American home front. Factories must build weapons, workers must
+    produce supplies, and the country must support service members overseas.
+  </p>
 
-    <p class="story">
-      December 1941. The United States has entered World War II.
-      President Franklin D. Roosevelt needs your help to organize the
-      American home front. Factories must build weapons, workers must
-      produce supplies, and the country must support millions of service
-      members overseas.
-    </p>
+  <div class="artwork"
+       role="img"
+       aria-label="Challenge 1: Aircraft production"
+       style="background-image:url('arsenal_images/challenge-01.jpg')">
+  </div>
 
-    <div class="artwork"
-         role="img"
-         aria-label="Aircraft production during World War II"
-         style="background-image:url('arsenal_images/challenge-01.jpg')">
-    </div>
+  <h2>Your Mission</h2>
+  <ul class="fact-list">
+    <li>Complete all 10 challenges as a member of the wartime leadership team.</li>
+    <li>Read the facts and summarize them in your own paper notes.</li>
+    <li>Choose the best policy from four realistic options.</li>
+    <li>Earn at least 26 out of 40 points to pass certification.</li>
+  </ul>
+  <p><strong>You do not type your notes into the game.</strong>
+     Summarize the facts on your paper copy.</p>
 
-    <h2>Your Mission</h2>
-    <ul class="fact-list">
-      <li>Complete all 10 challenges as a member of the wartime leadership team.</li>
-      <li>Read the facts and summarize them in your own paper notes.</li>
-      <li>Choose the best policy from four realistic options.</li>
-      <li>Earn at least 26 out of 40 points to pass certification.</li>
-    </ul>
+  <label for="studentName"><strong>Enter your name for the certificate:</strong></label><br>
+  <input id="studentName" maxlength="60" placeholder="First and last name">
+  <br>
+  <button class="primary" onclick="startGame()">Accept the Mission</button>
+</section>
 
-    <p><strong>Important:</strong> You do not type your notes into the game.
-      Keep your paper notes with you throughout the mission.</p>
+<section id="gameScreen" class="hidden">
+  <div class="topline">
+    <span id="challengeCounter">CHALLENGE 1 OF 10</span>
+    <span>SCORE: <span id="topScore">0</span> / 40</span>
+    <span>PASS: 26</span>
+  </div>
 
-    <label for="studentName"><strong>Enter your name for the certificate:</strong></label><br>
-    <input id="studentName" maxlength="60" placeholder="First and last name">
-    <br>
-    <button class="primary" onclick="startGame()">Accept the Mission</button>
-  </section>
+  <div class="panel">
+    <div class="mission-layout">
+      <div>
+        <div class="eyebrow" id="missionCategory"></div>
+        <h1 id="missionTitle"></h1>
 
-  <section id="gameScreen" class="hidden">
-    <div class="topline">
-      <span id="challengeCounter">CHALLENGE 1 OF 10</span>
-      <span>SCORE: <span id="topScore">0</span> / 40</span>
-      <span>PASS: 26</span>
-    </div>
+        <!-- The image changes automatically for every challenge. -->
+        <div class="artwork" id="missionArt" role="img"></div>
 
-    <div class="panel">
-      <div class="mission-layout">
-        <div>
-          <div class="eyebrow" id="missionCategory"></div>
-          <h1 id="missionTitle"></h1>
+        <div class="story" id="missionStory"></div>
+        <div class="location">
+          <strong>LOCATION / SITUATION</strong>
+          <div id="missionLocation"></div>
+        </div>
 
-          <div class="artwork" id="missionArt" role="img"></div>
+        <div class="decision-title">
+          <div class="ribbon">Your Decision</div>
+          <h2 id="decisionQuestion"></h2>
+          <p>Choose the plan that best solves the problem.</p>
+        </div>
 
-          <div class="story" id="missionStory"></div>
+        <div class="choices" id="choices"></div>
+        <div id="feedback" class="feedback hidden" aria-live="polite"></div>
 
-          <div class="location">
-            <strong>LOCATION / SITUATION</strong>
-            <div id="missionLocation"></div>
-          </div>
+        <div class="action-row no-print">
+          <button id="nextButton" class="primary hidden" onclick="nextMission()">
+            Next Challenge →
+          </button>
+        </div>
+      </div>
 
-          <div class="decision-title">
-            <div class="ribbon">Your Decision</div>
-            <h2 id="decisionQuestion"></h2>
-            <p>Choose the plan that best solves the problem.</p>
-          </div>
-
-          <div class="choices" id="choices"></div>
-          <div id="feedback" class="feedback hidden" aria-live="polite"></div>
-
-          <div class="action-row no-print">
-            <button id="nextButton" class="primary hidden" onclick="nextMission()">
-              Next Challenge →
-            </button>
+      <aside class="sidebar">
+        <div class="score-card">
+          <div class="eyebrow" style="color:#e7c77a">Command Score</div>
+          <div class="score-number"><span id="sideScore">0</span> / 40</div>
+          <div id="scoreMessage">Make smart decisions to earn points.</div>
+          <div class="score-track">
+            <div id="scoreFill" class="score-fill"></div>
           </div>
         </div>
 
-        <aside class="sidebar">
-          <div class="score-card">
-            <div class="eyebrow" style="color:#e7c77a">Command Score</div>
-            <div class="score-number"><span id="sideScore">0</span> / 40</div>
-            <div id="scoreMessage">Make smart decisions to earn points.</div>
-            <div class="score-track">
-              <div id="scoreFill" class="score-fill"></div>
-            </div>
-          </div>
+        <div class="notes">
+          <h3>✎ ADD TO YOUR NOTES</h3>
+          <p>Summarize the key facts in your own words on your paper copy.</p>
+          <ul>
+            <li>Where is the problem happening?</li>
+            <li>What is the main problem?</li>
+            <li>Write down at least two important facts.</li>
+            <li>Why does this decision matter to the war?</li>
+          </ul>
+        </div>
 
-          <div class="notes">
-            <h3>✎ ADD TO YOUR NOTES</h3>
-            <p>Summarize the key facts in your own words on your paper copy. Do not type here.</p>
-            <ul>
-              <li>Where is the problem happening?</li>
-              <li>What is the main problem?</li>
-              <li>Write down at least two important facts.</li>
-              <li>Why does this decision matter to the war?</li>
-            </ul>
-          </div>
-
-          <div class="panel">
-            <h3>Key Facts for This Challenge</h3>
-            <ul class="fact-list" id="missionFacts"></ul>
-          </div>
-        </aside>
-      </div>
+        <div class="panel">
+          <h3>Key Facts for This Challenge</h3>
+          <ul class="fact-list" id="missionFacts"></ul>
+        </div>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="resultScreen" class="hidden">
-    <div class="panel">
-      <div id="resultContent"></div>
-      <div class="action-row no-print">
-        <button id="printButton" class="primary" onclick="window.print()">
-          Print / Save Certificate
-        </button>
-        <button class="secondary" onclick="restartGame()">Restart Game</button>
-      </div>
+<section id="resultScreen" class="hidden">
+  <div class="panel">
+    <div id="resultContent"></div>
+    <div class="action-row no-print">
+      <button id="printButton" class="primary" onclick="window.print()">Print / Save Certificate</button>
+      <button class="secondary" onclick="restartGame()">Restart Game</button>
     </div>
-  </section>
+  </div>
+</section>
 </main>
 
 <footer>U.S. Home Front Command • Historical decision-making simulation</footer>
 
 <script>
+/*
+  Each mission contains its own image filename.
+  The image folder must be named arsenal_images.
+*/
 const missions = [
 {
  category:"Wartime Production",
  title:"The Army Needs More Planes",
- location:"Detroit, Michigan, and the Great Lakes industrial region.",
  image:"challenge-01.jpg",
+ location:"Detroit, Michigan, and the Great Lakes industrial region.",
  story:"The military needs more fighter planes and bombers. Car factories have machines and workers who can help, but aircraft require special parts, engines, and training. Changing a factory from cars to planes takes time. How can America increase production without wasting supplies?",
  facts:[
   "Detroit was a major center for car and factory production.",
@@ -412,8 +408,8 @@ const missions = [
 {
  category:"Steel and Raw Materials",
  title:"Steel for Victory",
- location:"Pittsburgh, Pennsylvania, and the industrial regions of the Northeast and Midwest.",
  image:"challenge-02.jpg",
+ location:"Pittsburgh, Pennsylvania, and the industrial regions of the Northeast and Midwest.",
  story:"Steel is needed for tanks, ships, guns, rails, and factory machines. Military orders are rising quickly, but steel mills also supply civilian industries. If the government does not plan carefully, important projects may compete for the same materials.",
  facts:[
   "Steel was needed for ships, tanks, railroads, and factories.",
@@ -432,8 +428,8 @@ const missions = [
 {
  category:"Shipbuilding",
  title:"Build the Fleet",
- location:"West Coast shipyards and other major American shipbuilding centers.",
  image:"challenge-03.jpg",
+ location:"West Coast shipyards and other major American shipbuilding centers.",
  story:"The Navy needs warships, while the Army needs cargo ships to move troops, food, fuel, and equipment. Shipyards are busy, and ships require steel, engines, skilled workers, and many parts. A ship that is built but cannot be supplied is not much help.",
  facts:[
   "Cargo ships carried food, fuel, weapons, and other supplies.",
@@ -452,8 +448,8 @@ const missions = [
 {
  category:"Workers and Labor",
  title:"Workers for War",
- location:"Factories and shipyards across the Midwest, Northeast, and West Coast.",
  image:"challenge-04.jpg",
+ location:"Factories and shipyards across the Midwest, Northeast, and West Coast.",
  story:"War production needs millions of workers. Many men have joined the military, so women and new groups of workers take on jobs in factories and shipyards. Employers need workers with the right skills, and workers need training and safe conditions.",
  facts:[
   "Millions of workers took jobs connected to wartime production.",
@@ -472,8 +468,8 @@ const missions = [
 {
  category:"Fuel and Energy",
  title:"Fuel the War Machine",
- location:"Texas, the Gulf Coast, and oil-refining and fuel-distribution centers.",
  image:"challenge-05.jpg",
+ location:"Texas, the Gulf Coast, and oil-refining and fuel-distribution centers.",
  story:"Planes, tanks, trucks, ships, and trains all need fuel. Oil refineries must turn crude oil into usable products, and pipelines, trains, and tankers must move fuel to the right places. A shortage in the wrong location can slow military operations.",
  facts:[
   "Texas and the Gulf Coast were important oil and refining regions.",
@@ -492,8 +488,8 @@ const missions = [
 {
  category:"Transportation and Logistics",
  title:"Move the Supplies",
- location:"Railroads, ports, factories, and military bases throughout the United States.",
  image:"challenge-06.jpg",
+ location:"Railroads, ports, factories, and military bases throughout the United States.",
  story:"Weapons and supplies are useless if they cannot reach the people who need them. Railroads carry heavy materials and finished goods. Ports, trucks, and trains must work together. Congested rail yards or poorly planned shipments can slow the entire war effort.",
  facts:[
   "Railroads carried heavy materials and finished goods across the country.",
@@ -512,8 +508,8 @@ const missions = [
 {
  category:"Food Production",
  title:"Victory Gardens",
- location:"Homes, schools, parks, and communities across the United States.",
  image:"challenge-07.jpg",
+ location:"Homes, schools, parks, and communities across the United States.",
  story:"Food must feed military personnel as well as civilians. Families can grow vegetables at home and in community gardens. Gardens will not replace every farm, but they can add fresh food and reduce pressure on commercial supplies.",
  facts:[
   "Victory Gardens encouraged families to grow vegetables.",
@@ -532,8 +528,8 @@ const missions = [
 {
  category:"War Finance",
  title:"War Bonds",
- location:"Communities, workplaces, schools, and banks across the United States.",
  image:"challenge-08.jpg",
+ location:"Communities, workplaces, schools, and banks across the United States.",
  story:"The government needs money to pay for planes, ships, weapons, and supplies. War bonds allow Americans to lend money to the government. Public campaigns can explain the bonds, but families have different incomes and financial responsibilities.",
  facts:[
   "War bonds let Americans lend money to the government.",
@@ -552,8 +548,8 @@ const missions = [
 {
  category:"Propaganda and Public Morale",
  title:"Propaganda and Public Morale",
- location:"Newspapers, radio stations, workplaces, schools, and public spaces across the United States.",
  image:"challenge-09.jpg",
+ location:"Newspapers, radio stations, workplaces, schools, and public spaces across the United States.",
  story:"The government uses posters, radio, films, and speeches to encourage production, safety, saving, and support for the war. Public messages can unite people, but false claims and unfair attacks can damage trust and target innocent groups.",
  facts:[
   "Propaganda uses messages to shape people's views and actions.",
@@ -572,8 +568,8 @@ const missions = [
 {
  category:"Civil Liberties",
  title:"Executive Order 9066",
- location:"The West Coast, including California, Oregon, and Washington.",
  image:"challenge-10.jpg",
+ location:"The West Coast, including California, Oregon, and Washington.",
  story:"After Pearl Harbor, fear and racism influenced government decisions. In February 1942, President Roosevelt signed Executive Order 9066, which authorized military areas from which people could be excluded. Policies that followed led to the forced removal and incarceration of about 120,000 people of Japanese ancestry, most of them U.S. citizens. Leaders must consider security while protecting rights and using evidence fairly.",
  facts:[
   "Roosevelt signed Executive Order 9066 on February 19, 1942.",
@@ -597,18 +593,16 @@ let student = "";
 let answered = false;
 
 function startGame() {
-  const nameField = document.getElementById("studentName");
-  student = nameField.value.trim();
+  student = document.getElementById("studentName").value.trim();
 
   if (!student) {
     alert("Enter your name before accepting the mission.");
-    nameField.focus();
+    document.getElementById("studentName").focus();
     return;
   }
 
   currentMission = 0;
   score = 0;
-
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("resultScreen").classList.add("hidden");
   document.getElementById("gameScreen").classList.remove("hidden");
@@ -623,15 +617,12 @@ function renderMission() {
 
   document.getElementById("challengeCounter").textContent =
     `CHALLENGE ${currentMission + 1} OF ${missions.length}`;
-
   document.getElementById("topScore").textContent = score;
   document.getElementById("sideScore").textContent = score;
-  document.getElementById("scoreFill").style.width = (score / 40 * 100) + "%";
-
+  document.getElementById("scoreFill").style.width =
+    (Math.max(0,score) / 40 * 100) + "%";
   document.getElementById("scoreMessage").textContent =
-    score >= 26
-      ? "You are on track to pass."
-      : "Make careful decisions to earn points.";
+    score >= 26 ? "You are on track to pass." : "Make careful decisions to earn points.";
 
   document.getElementById("missionCategory").textContent = m.category;
   document.getElementById("missionTitle").textContent = m.title;
@@ -639,23 +630,23 @@ function renderMission() {
   document.getElementById("missionLocation").textContent = m.location;
   document.getElementById("decisionQuestion").textContent = m.question;
 
-  // Show the individual image for this challenge.
+  /*
+    IMAGE CONNECTION:
+    Each mission has an image property from challenge-01.jpg to challenge-10.jpg.
+    This sets the matching image whenever a challenge loads.
+  */
   const art = document.getElementById("missionArt");
-  art.style.backgroundImage =
-    `url("arsenal_images/${m.image}")`;
+  art.style.backgroundImage = `url("arsenal_images/${m.image}")`;
   art.setAttribute("aria-label", "Historical illustration for " + m.title);
 
-  // List the facts for paper notes.
   const factsList = document.getElementById("missionFacts");
   factsList.innerHTML = "";
-
   m.facts.forEach(fact => {
     const li = document.createElement("li");
     li.textContent = fact;
     factsList.appendChild(li);
   });
 
-  // Build the four answer choices.
   const choices = document.getElementById("choices");
   choices.innerHTML = "";
   const letters = ["A","B","C","D"];
@@ -676,14 +667,12 @@ function renderMission() {
     button.appendChild(letter);
     button.appendChild(choiceText);
     button.addEventListener("click", () => selectChoice(index));
-
     choices.appendChild(button);
   });
 
   const feedback = document.getElementById("feedback");
   feedback.className = "feedback hidden";
   feedback.innerHTML = "";
-
   document.getElementById("nextButton").classList.add("hidden");
 }
 
@@ -691,24 +680,18 @@ function selectChoice(index) {
   if (answered) return;
   answered = true;
 
-  const m = missions[currentMission];
-  const chosen = m.options[index];
-
+  const chosen = missions[currentMission].options[index];
   score += chosen.score;
 
   document.getElementById("topScore").textContent = score;
   document.getElementById("sideScore").textContent = score;
   document.getElementById("scoreFill").style.width =
-    (Math.max(0, score) / 40 * 100) + "%";
+    (Math.max(0,score) / 40 * 100) + "%";
 
   document.getElementById("scoreMessage").textContent =
-    score >= 26
-      ? "You are on track to pass."
-      : "Keep making careful decisions.";
+    score >= 26 ? "You are on track to pass." : "Keep making careful decisions.";
 
-  document.querySelectorAll(".choice").forEach(button => {
-    button.disabled = true;
-  });
+  document.querySelectorAll(".choice").forEach(button => button.disabled = true);
 
   const feedback = document.getElementById("feedback");
   feedback.className = "feedback " + (chosen.score >= 2 ? "good" : "bad");
@@ -735,11 +718,9 @@ function selectChoice(index) {
   feedback.appendChild(running);
 
   const nextButton = document.getElementById("nextButton");
-  nextButton.textContent =
-    currentMission === missions.length - 1
-      ? "Finish Certification →"
-      : "Next Challenge →";
-
+  nextButton.textContent = currentMission === missions.length - 1
+    ? "Finish Certification →"
+    : "Next Challenge →";
   nextButton.classList.remove("hidden");
 }
 
@@ -755,28 +736,19 @@ function nextMission() {
   }
 }
 
-function expertise(scoreValue) {
-  if (scoreValue >= 36) {
-    return {
-      level:"LEVEL 4 — MASTER COMMANDER",
-      description:"Outstanding leadership. You made consistently strong decisions across the home front."
-    };
-  }
-
-  if (scoreValue >= 31) {
-    return {
-      level:"LEVEL 3 — SENIOR EXECUTIVE",
-      description:"Excellent work. You showed strong understanding of wartime production and national priorities."
-    };
-  }
-
-  if (scoreValue >= 26) {
-    return {
-      level:"LEVEL 2 — CERTIFIED EXECUTIVE",
-      description:"You passed certification and demonstrated the knowledge needed to support the war effort."
-    };
-  }
-
+function expertise(value) {
+  if (value >= 36) return {
+    level:"LEVEL 4 — MASTER COMMANDER",
+    description:"Outstanding leadership. You made consistently strong decisions across the home front."
+  };
+  if (value >= 31) return {
+    level:"LEVEL 3 — SENIOR EXECUTIVE",
+    description:"Excellent work. You showed strong understanding of wartime production and national priorities."
+  };
+  if (value >= 26) return {
+    level:"LEVEL 2 — CERTIFIED EXECUTIVE",
+    description:"You passed certification and demonstrated the knowledge needed to support the war effort."
+  };
   return {
     level:"LEVEL 1 — EXECUTIVE IN TRAINING",
     description:"You have not yet reached the 26-point passing score. Review your notes and restart the mission."
@@ -805,9 +777,7 @@ function finishGame() {
   cert.appendChild(title);
 
   const subtitle = document.createElement("p");
-  subtitle.textContent = passed
-    ? "This certifies that"
-    : "This report is presented to";
+  subtitle.textContent = passed ? "This certifies that" : "This report is presented to";
   cert.appendChild(subtitle);
 
   const name = document.createElement("div");

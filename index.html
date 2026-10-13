@@ -1,842 +1,100 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arsenal of Democracy | Home Front Command</title>
+<title>Mobilize the Home Front, 1941</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy:#102b46;
-  --red:#963326;
-  --gold:#b18738;
-  --paper:#fffdf7;
-  --ink:#202a35;
-  --green:#35674b;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  background:#e8e1d2;
-  color:var(--ink);
-  font-family:Arial,Helvetica,sans-serif;
-}
-header {
-  background:var(--navy);
-  color:white;
-  padding:18px 5%;
-  border-bottom:5px solid var(--gold);
-}
-.header-inner {
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-.brand {
-  font-family:Georgia,serif;
-  font-size:clamp(20px,3vw,34px);
-  font-weight:bold;
-}
-.header-small { font-size:13px; line-height:1.6; }
-main {
-  max-width:1250px;
-  margin:24px auto;
-  padding:0 16px 30px;
-}
-.panel {
-  background:var(--paper);
-  border:1px solid #d3c4a3;
-  border-radius:8px;
-  padding:clamp(18px,3vw,32px);
-  box-shadow:0 3px 12px #00000010;
-}
-h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; }
-h1 { font-size:clamp(30px,5vw,48px); margin:12px 0; color:var(--navy); }
-h2 { color:var(--navy); }
-.eyebrow {
-  text-transform:uppercase;
-  letter-spacing:2px;
-  color:var(--gold);
-  font-size:13px;
-  font-weight:bold;
-}
-.ribbon {
-  display:inline-block;
-  background:var(--red);
-  color:white;
-  padding:7px 13px;
-  font-weight:bold;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-button {
-  cursor:pointer;
-  border:0;
-  border-radius:5px;
-  padding:13px 18px;
-  font-size:16px;
-  font-weight:bold;
-}
-button:focus-visible,input:focus-visible {
-  outline:3px solid var(--gold);
-  outline-offset:3px;
-}
-.primary { background:var(--navy); color:white; }
-.primary:hover { background:#244867; }
-.secondary { background:#e9dfc9; color:var(--navy); }
-input {
-  width:100%;
-  max-width:450px;
-  padding:13px;
-  font-size:17px;
-  border:1px solid #b7aa90;
-  border-radius:4px;
-  margin:8px 0 18px;
-}
-.hidden { display:none !important; }
-.topline {
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  align-items:center;
-  background:var(--red);
-  color:white;
-  padding:14px 18px;
-  border-radius:6px;
-  margin-bottom:18px;
-  font-weight:bold;
-}
-.mission-layout {
-  display:grid;
-  grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr);
-  gap:20px;
-}
-
-/* INDIVIDUAL CHALLENGE IMAGE */
-.artwork {
-  width:100%;
-  aspect-ratio:3 / 2;
-  background-color:#e8e1d2;
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:contain;
-  border:1px solid #c7b58e;
-  border-radius:5px;
-  margin:18px 0;
-}
-.story { font-size:18px; line-height:1.65; }
-.location {
-  background:#e8edf0;
-  border-left:5px solid var(--navy);
-  padding:12px 15px;
-  margin:16px 0;
-}
-.notes {
-  border:1px solid #c6b58d;
-  background:#fffaf0;
-  border-radius:6px;
-  padding:18px;
-  margin-bottom:18px;
-}
-.notes h3 { margin-top:0; }
-.notes ul { padding-left:22px; line-height:1.55; }
-.fact-list { line-height:1.65; padding-left:23px; }
-.fact-list li { margin-bottom:9px; }
-.decision-title {
-  margin-top:26px;
-  border-top:3px solid var(--gold);
-  padding-top:18px;
-}
-.choices {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-  margin-top:14px;
-}
-.choice {
-  text-align:left;
-  background:#fffdf7;
-  color:var(--ink);
-  border:1px solid #b69b62;
-  line-height:1.5;
-  min-height:95px;
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-}
-.choice:hover:not(:disabled) {
-  background:#f2e7cc;
-  border-color:var(--navy);
-}
-.letter {
-  flex:0 0 34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:var(--navy);
-  color:white;
-}
-.choice-text { font-weight:normal; }
-.sidebar { display:flex; flex-direction:column; gap:16px; }
-.score-card {
-  background:var(--navy);
-  color:white;
-  padding:18px;
-  border-radius:6px;
-}
-.score-number { font-size:34px; font-weight:bold; }
-.score-track {
-  height:10px;
-  background:#ffffff35;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:12px;
-}
-.score-fill {
-  height:100%;
-  width:0%;
-  background:#e0bd68;
-  transition:width .2s;
-}
-.feedback {
-  margin-top:20px;
-  padding:18px;
-  border-radius:6px;
-  border-left:6px solid var(--gold);
-  background:#f2ead6;
-  line-height:1.6;
-}
-.feedback.good { border-color:var(--green); }
-.feedback.bad { border-color:var(--red); }
-.feedback h3 { margin-top:0; }
-.feedback .points { font-size:22px; font-weight:bold; }
-.action-row {
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-.certificate {
-  border:8px double var(--gold);
-  padding:clamp(20px,5vw,55px);
-  text-align:center;
-  background:#fffdf6;
-}
-.certificate h1 { font-size:clamp(34px,6vw,55px); }
-.cert-name { font-size:28px; font-weight:bold; margin:20px 0; }
-.cert-level {
-  display:inline-block;
-  padding:10px 18px;
-  background:var(--navy);
-  color:white;
-  font-weight:bold;
-  margin:10px 0;
-}
-footer { text-align:center; padding:20px; color:#5c584f; font-size:12px; }
-@media(max-width:800px) {
-  .mission-layout { grid-template-columns:1fr; }
-  .choices { grid-template-columns:1fr; }
-}
-@media print {
-  body { background:white; }
-  header,footer,.no-print,#startScreen,#gameScreen {
-    display:none !important;
-  }
-  main { margin:0; max-width:none; padding:0; }
-  #resultScreen { display:block !important; }
-  .certificate { box-shadow:none; min-height:85vh; }
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="header-inner">
-    <div class="brand">★ ARSENAL OF DEMOCRACY</div>
-    <div class="header-small">
-      U.S. HOME FRONT COMMAND<br>
-      DECEMBER 1941 – 1945
-    </div>
-  </div>
-</header>
-
-<main>
-<section id="startScreen" class="panel">
-  <div class="eyebrow">Presidential Mission Briefing</div>
-  <h1>America Must Mobilize!</h1>
-  <p class="story">
-    December 1941. The United States has entered World War II.
-    President Franklin D. Roosevelt needs your help to organize the
-    American home front. Factories must build weapons, workers must
-    produce supplies, and the country must support service members overseas.
-  </p>
-
-  <div class="artwork"
-       role="img"
-       aria-label="Challenge 1: Aircraft production"
-       style="background-image:url('arsenal_images/challenge-01.jpg')">
-  </div>
-
-  <h2>Your Mission</h2>
-  <ul class="fact-list">
-    <li>Complete all 10 challenges as a member of the wartime leadership team.</li>
-    <li>Read the facts and summarize them in your own paper notes.</li>
-    <li>Choose the best policy from four realistic options.</li>
-    <li>Earn at least 26 out of 40 points to pass certification.</li>
-  </ul>
-  <p><strong>You do not type your notes into the game.</strong>
-     Summarize the facts on your paper copy.</p>
-
-  <label for="studentName"><strong>Enter your name for the certificate:</strong></label><br>
-  <input id="studentName" maxlength="60" placeholder="First and last name">
-  <br>
-  <button class="primary" onclick="startGame()">Accept the Mission</button>
-</section>
-
-<section id="gameScreen" class="hidden">
-  <div class="topline">
-    <span id="challengeCounter">CHALLENGE 1 OF 10</span>
-    <span>SCORE: <span id="topScore">0</span> / 40</span>
-    <span>PASS: 26</span>
-  </div>
-
-  <div class="panel">
-    <div class="mission-layout">
-      <div>
-        <div class="eyebrow" id="missionCategory"></div>
-        <h1 id="missionTitle"></h1>
-
-        <!-- The image changes automatically for every challenge. -->
-        <div class="artwork" id="missionArt" role="img"></div>
-
-        <div class="story" id="missionStory"></div>
-        <div class="location">
-          <strong>LOCATION / SITUATION</strong>
-          <div id="missionLocation"></div>
-        </div>
-
-        <div class="decision-title">
-          <div class="ribbon">Your Decision</div>
-          <h2 id="decisionQuestion"></h2>
-          <p>Choose the plan that best solves the problem.</p>
-        </div>
-
-        <div class="choices" id="choices"></div>
-        <div id="feedback" class="feedback hidden" aria-live="polite"></div>
-
-        <div class="action-row no-print">
-          <button id="nextButton" class="primary hidden" onclick="nextMission()">
-            Next Challenge →
-          </button>
-        </div>
-      </div>
-
-      <aside class="sidebar">
-        <div class="score-card">
-          <div class="eyebrow" style="color:#e7c77a">Command Score</div>
-          <div class="score-number"><span id="sideScore">0</span> / 40</div>
-          <div id="scoreMessage">Make smart decisions to earn points.</div>
-          <div class="score-track">
-            <div id="scoreFill" class="score-fill"></div>
-          </div>
-        </div>
-
-        <div class="notes">
-          <h3>✎ ADD TO YOUR NOTES</h3>
-          <p>Summarize the key facts in your own words on your paper copy.</p>
-          <ul>
-            <li>Where is the problem happening?</li>
-            <li>What is the main problem?</li>
-            <li>Write down at least two important facts.</li>
-            <li>Why does this decision matter to the war?</li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <h3>Key Facts for This Challenge</h3>
-          <ul class="fact-list" id="missionFacts"></ul>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<section id="resultScreen" class="hidden">
-  <div class="panel">
-    <div id="resultContent"></div>
-    <div class="action-row no-print">
-      <button id="printButton" class="primary" onclick="window.print()">Print / Save Certificate</button>
-      <button class="secondary" onclick="restartGame()">Restart Game</button>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>U.S. Home Front Command • Historical decision-making simulation</footer>
-
+:root{--navy:#10213a;--ink:#1b1f27;--panel:#e9edf0;--gold:#f0b323;--red:#a8281f;--green:#2f6b3f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--ink);font-family:'Libre Baskerville',Georgia,serif;line-height:1.65}
+main{max-width:760px;margin:0 auto;padding:24px 16px 60px}
+h1,h2,h3{font-family:Oswald,Impact,sans-serif;letter-spacing:.02em;margin:.2em 0}
+h1{font-size:2.6rem;color:var(--gold);line-height:1.1}
+.card{background:var(--panel);border-top:8px solid var(--gold);padding:22px 24px;margin-bottom:18px}
+.top{color:#fff;display:flex;justify-content:space-between;font-family:Oswald,sans-serif;margin-bottom:10px}
+.bar{height:8px;background:#344a6b;margin-bottom:16px}.bar i{display:block;height:100%;background:var(--gold)}
+.ph{width:100%;aspect-ratio:16/9;object-fit:cover;background:#2a3c58;display:block;margin-bottom:6px}
+.ph.fb{color:#cdd6e3;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:.9rem}
+.cap{font-size:.78rem;color:#555;margin:0 0 14px}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #aab4bf;padding:12px 14px;margin:10px 0;cursor:pointer}
+.opt:hover{border-color:var(--navy)}.opt.sel{border-color:var(--navy);background:#dbe6f5;box-shadow:inset 6px 0 0 var(--navy)}
+.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn{font-family:Oswald,sans-serif;font-size:1.15rem;background:var(--red);color:#fff;border:0;padding:12px 28px;cursor:pointer;margin-top:10px}
+.btn:disabled{background:#999;cursor:not-allowed}
+.pts{font-family:Oswald,sans-serif;font-size:2.4rem}.good{color:var(--green)}.bad{color:var(--red)}
+.best{border-left:6px solid var(--green);background:#fff;padding:10px 14px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:6px;border-bottom:1px solid #b8c0c9;text-align:left}
+.def{background:#fff;border-left:6px solid var(--red);padding:10px 14px;margin:14px 0}
+</style></head><body><main id="app"></main>
 <script>
-/*
-  Each mission contains its own image filename.
-  The image folder must be named arsenal_images.
-*/
-const missions = [
-{
- category:"Wartime Production",
- title:"The Army Needs More Planes",
- image:"challenge-01.jpg",
- location:"Detroit, Michigan, and the Great Lakes industrial region.",
- story:"The military needs more fighter planes and bombers. Car factories have machines and workers who can help, but aircraft require special parts, engines, and training. Changing a factory from cars to planes takes time. How can America increase production without wasting supplies?",
- facts:[
-  "Detroit was a major center for car and factory production.",
-  "Planes needed engines, metal, trained workers, and special tools.",
-  "The government could help factories plan and share supplies.",
-  "Changing a car factory into an aircraft factory took time."
- ],
- question:"How should America build more planes?",
- options:[
-  {text:"Build a few new factories and wait until they are ready.",score:-2,feedback:"New factories may help later, but waiting wastes time when existing factories could be converted."},
-  {text:"Help car factories change step by step and coordinate parts deliveries.",score:4,feedback:"Correct. Converting existing factories and coordinating supplies helps increase production while reducing delays."},
-  {text:"Let each factory change its work whenever it wants.",score:-4,feedback:"Without coordination, factories could compete for the same materials or produce parts that do not fit together."},
-  {text:"Give factories contracts but let each company make its own plan.",score:2,feedback:"Contracts encourage production, but coordination is also needed to manage scarce parts and avoid delays."}
- ]
-},
-{
- category:"Steel and Raw Materials",
- title:"Steel for Victory",
- image:"challenge-02.jpg",
- location:"Pittsburgh, Pennsylvania, and the industrial regions of the Northeast and Midwest.",
- story:"Steel is needed for tanks, ships, guns, rails, and factory machines. Military orders are rising quickly, but steel mills also supply civilian industries. If the government does not plan carefully, important projects may compete for the same materials.",
- facts:[
-  "Steel was needed for ships, tanks, railroads, and factories.",
-  "Steel production depended on iron ore, coal, energy, and transportation.",
-  "Military factories competed with civilian businesses for materials.",
-  "Planning deliveries helped prevent shortages and delays."
- ],
- question:"How should the government manage limited steel supplies?",
- options:[
-  {text:"Give every industry exactly the same amount of steel.",score:-2,feedback:"Equal shares may sound fair, but different projects have different needs and levels of military importance."},
-  {text:"Allow the highest-paying companies to buy all the steel they can.",score:-4,feedback:"This could leave essential military and transportation projects without the steel they need."},
-  {text:"Give every company its own supply plan and avoid setting priorities.",score:2,feedback:"Company plans can help, but national priorities are needed when supplies are limited."},
-  {text:"Prioritize essential war projects while protecting supplies for mines, railroads, and power plants.",score:4,feedback:"Correct. Steel priorities should support weapons production and the systems that make production possible."}
- ]
-},
-{
- category:"Shipbuilding",
- title:"Build the Fleet",
- image:"challenge-03.jpg",
- location:"West Coast shipyards and other major American shipbuilding centers.",
- story:"The Navy needs warships, while the Army needs cargo ships to move troops, food, fuel, and equipment. Shipyards are busy, and ships require steel, engines, skilled workers, and many parts. A ship that is built but cannot be supplied is not much help.",
- facts:[
-  "Cargo ships carried food, fuel, weapons, and other supplies.",
-  "Warships and cargo ships performed different but important jobs.",
-  "Shipyards needed steel, engines, welders, and skilled workers.",
-  "Standard designs and planned deliveries could speed production."
- ],
- question:"What is the best way to expand shipbuilding?",
- options:[
-  {text:"Focus on warships first and expand cargo ship production later.",score:-2,feedback:"Warships matter, but cargo ships are essential for delivering the supplies armies and navies need."},
-  {text:"Build only the ships that individual companies prefer to make.",score:-4,feedback:"Uncoordinated building could leave the military short of the types of ships it needs."},
-  {text:"Expand shipyard shifts, use standard designs, and plan deliveries of parts.",score:4,feedback:"Correct. Standard designs and coordinated supplies can reduce delays while increasing the number of ships built."},
-  {text:"Build new shipyards and wait until they are fully ready before expanding existing ones.",score:2,feedback:"New shipyards may help, but expanding current production can deliver results sooner."}
- ]
-},
-{
- category:"Workers and Labor",
- title:"Workers for War",
- image:"challenge-04.jpg",
- location:"Factories and shipyards across the Midwest, Northeast, and West Coast.",
- story:"War production needs millions of workers. Many men have joined the military, so women and new groups of workers take on jobs in factories and shipyards. Employers need workers with the right skills, and workers need training and safe conditions.",
- facts:[
-  "Millions of workers took jobs connected to wartime production.",
-  "Women entered many industrial jobs that had previously excluded them.",
-  "Black workers faced discrimination in hiring, pay, and working conditions.",
-  "Training and safer workplaces helped workers do their jobs well."
- ],
- question:"How should the government help factories find and keep workers?",
- options:[
-  {text:"Train new workers, support fair hiring, and improve workplace safety.",score:4,feedback:"Correct. Training, fair opportunities, and safe conditions help factories recruit workers and maintain production."},
-  {text:"Make every worker work longer hours immediately.",score:-2,feedback:"Long hours without rest or safety protections can increase mistakes, injuries, and exhaustion."},
-  {text:"Hire only workers who already have years of factory experience.",score:-4,feedback:"This would exclude many capable people and make it harder to fill the growing number of jobs."},
-  {text:"Offer training money but let each company set all hiring rules without oversight.",score:2,feedback:"Training is helpful, but fair hiring and safe working conditions also matter."}
- ]
-},
-{
- category:"Fuel and Energy",
- title:"Fuel the War Machine",
- image:"challenge-05.jpg",
- location:"Texas, the Gulf Coast, and oil-refining and fuel-distribution centers.",
- story:"Planes, tanks, trucks, ships, and trains all need fuel. Oil refineries must turn crude oil into usable products, and pipelines, trains, and tankers must move fuel to the right places. A shortage in the wrong location can slow military operations.",
- facts:[
-  "Texas and the Gulf Coast were important oil and refining regions.",
-  "Planes, ships, trucks, and tanks all needed fuel.",
-  "Pipelines, trains, and tankers moved fuel to users.",
-  "Factories, railroads, and military bases also depended on energy."
- ],
- question:"How should America manage fuel during wartime?",
- options:[
-  {text:"Send nearly all fuel to coastal military bases.",score:-2,feedback:"Coastal bases matter, but factories, railroads, and forces in other locations also need fuel."},
-  {text:"Let each business buy fuel without any national priorities.",score:-4,feedback:"Without planning, critical military operations and production centers could face shortages."},
-  {text:"Give every person and business the same fuel limit regardless of need.",score:2,feedback:"Limits can reduce waste, but essential military and industrial needs require different priorities."},
-  {text:"Prioritize essential military and industrial needs, plan deliveries, and use rationing where needed.",score:4,feedback:"Correct. Priorities and careful distribution help ensure that critical operations receive fuel while limiting waste."}
- ]
-},
-{
- category:"Transportation and Logistics",
- title:"Move the Supplies",
- image:"challenge-06.jpg",
- location:"Railroads, ports, factories, and military bases throughout the United States.",
- story:"Weapons and supplies are useless if they cannot reach the people who need them. Railroads carry heavy materials and finished goods. Ports, trucks, and trains must work together. Congested rail yards or poorly planned shipments can slow the entire war effort.",
- facts:[
-  "Railroads carried heavy materials and finished goods across the country.",
-  "Factories, ports, and military bases depended on one another.",
-  "Rail yards, rail cars, and ports could become bottlenecks.",
-  "Planning routes and schedules helped reduce delays."
- ],
- question:"How should the government keep supplies moving?",
- options:[
-  {text:"Let each factory ship everything immediately and sort out problems later.",score:-4,feedback:"Unplanned shipments could overload rail yards and leave urgent cargo waiting."},
-  {text:"Send most shipments through only a few major rail yards.",score:-2,feedback:"A few hubs can be efficient, but overloading them creates dangerous bottlenecks."},
-  {text:"Plan rail routes, set priorities, and coordinate factories, ports, and bases.",score:4,feedback:"Correct. Coordination helps move the right supplies to the right places at the right time."},
-  {text:"Give military shipments priority but let civilian rail traffic run without coordination.",score:2,feedback:"Military priority is important, but coordination across the transportation system prevents avoidable delays."}
- ]
-},
-{
- category:"Food Production",
- title:"Victory Gardens",
- image:"challenge-07.jpg",
- location:"Homes, schools, parks, and communities across the United States.",
- story:"Food must feed military personnel as well as civilians. Families can grow vegetables at home and in community gardens. Gardens will not replace every farm, but they can add fresh food and reduce pressure on commercial supplies.",
- facts:[
-  "Victory Gardens encouraged families to grow vegetables.",
-  "Home gardens added food and reduced demand on stores.",
-  "People needed seeds, tools, space, and basic gardening skills.",
-  "Large farms remained important for feeding the country and military."
- ],
- question:"How should the government support Victory Gardens?",
- options:[
-  {text:"Require every family to grow the same amount of food wherever they live.",score:-2,feedback:"Families have different space, time, and soil conditions, so a single requirement would not work well."},
-  {text:"Use posters and school programs to encourage gardens, while providing seeds and advice.",score:4,feedback:"Correct. Practical support and public information can help more families grow useful amounts of food."},
-  {text:"Stop supporting farms because home gardens can feed the whole country.",score:-4,feedback:"Home gardens help, but large farms remain essential for feeding civilians and the military."},
-  {text:"Give all available seeds to large commercial farms only.",score:2,feedback:"Commercial farms are important, but helping households and communities grow food can also reduce demand."}
- ]
-},
-{
- category:"War Finance",
- title:"War Bonds",
- image:"challenge-08.jpg",
- location:"Communities, workplaces, schools, and banks across the United States.",
- story:"The government needs money to pay for planes, ships, weapons, and supplies. War bonds allow Americans to lend money to the government. Public campaigns can explain the bonds, but families have different incomes and financial responsibilities.",
- facts:[
-  "War bonds let Americans lend money to the government.",
-  "Posters, workplace programs, and events encouraged people to buy bonds.",
-  "Families had different incomes and financial needs.",
-  "War bonds helped pay for the war but did not cover every cost."
- ],
- question:"What is the best way to encourage Americans to buy war bonds?",
- options:[
-  {text:"Tell everyone that buying bonds is the only way to prove loyalty.",score:-2,feedback:"Pressure and shame ignore different financial situations and can unfairly judge people."},
-  {text:"Focus only on rich families and large companies.",score:2,feedback:"Large investors can help, but a broad campaign can also reach many other willing buyers."},
-  {text:"Publicly shame workers who do not buy bonds.",score:-4,feedback:"Shaming workers is unfair and ignores the fact that some families cannot afford to buy bonds."},
-  {text:"Explain how bonds work and offer ways for people with different incomes to participate.",score:4,feedback:"Correct. Clear information and accessible ways to participate respect different financial situations."}
- ]
-},
-{
- category:"Propaganda and Public Morale",
- title:"Propaganda and Public Morale",
- image:"challenge-09.jpg",
- location:"Newspapers, radio stations, workplaces, schools, and public spaces across the United States.",
- story:"The government uses posters, radio, films, and speeches to encourage production, safety, saving, and support for the war. Public messages can unite people, but false claims and unfair attacks can damage trust and target innocent groups.",
- facts:[
-  "Propaganda uses messages to shape people's views and actions.",
-  "Posters and radio encouraged saving, production, and support for the military.",
-  "Some messages spread unfair ideas about people.",
-  "False claims and unfair blame can harm trust."
- ],
- question:"How should the government communicate with the public?",
- options:[
-  {text:"Use clear and accurate messages about saving, safety, and helping the war effort.",score:4,feedback:"Correct. Accurate messages can encourage useful action while helping the public trust official information."},
-  {text:"Blame entire ethnic groups and spread rumors to make people angry.",score:-4,feedback:"Scapegoating and rumors are harmful, unfair, and likely to damage public trust."},
-  {text:"Ban all criticism and say anyone who disagrees is disloyal.",score:-2,feedback:"Silencing every disagreement can hide mistakes and unfairly label people as enemies."},
-  {text:"Share patriotic messages but leave out all difficult facts.",score:2,feedback:"Patriotic messages may build morale, but misleading omissions can weaken trust when people discover the truth."}
- ]
-},
-{
- category:"Civil Liberties",
- title:"Executive Order 9066",
- image:"challenge-10.jpg",
- location:"The West Coast, including California, Oregon, and Washington.",
- story:"After Pearl Harbor, fear and racism influenced government decisions. In February 1942, President Roosevelt signed Executive Order 9066, which authorized military areas from which people could be excluded. Policies that followed led to the forced removal and incarceration of about 120,000 people of Japanese ancestry, most of them U.S. citizens. Leaders must consider security while protecting rights and using evidence fairly.",
- facts:[
-  "Roosevelt signed Executive Order 9066 on February 19, 1942.",
-  "The order authorized military areas; later policies led to forced removal and incarceration.",
-  "About 120,000 people of Japanese ancestry were incarcerated, most of them U.S. citizens.",
-  "Ancestry alone does not prove that a person is dangerous."
- ],
- question:"Which approach best balances security and civil liberties?",
- options:[
-  {text:"Remove every person with Japanese ancestry because some people fear an attack.",score:-4,feedback:"Ancestry alone is not proof of wrongdoing. Mass removal violated the rights of many innocent people."},
-  {text:"Ignore all security concerns and stop investigating possible threats.",score:-2,feedback:"Governments have a duty to investigate credible threats, but actions must be based on evidence and respect rights."},
-  {text:"Use evidence-based investigations, fair procedures, and individual review instead of judging people by ancestry.",score:4,feedback:"Correct. Security measures should be based on credible evidence and fair procedures, not collective blame based on ancestry."},
-  {text:"Restrict rights broadly but review a few cases after the war.",score:2,feedback:"Reviewing cases is better than no review, but broad restrictions without individual evidence can still cause serious injustice."}
- ]
-}
+/* ===== EDIT CONTENT HERE. Option points: 5 best, 3 partial, -3 weak, -5 harmful ===== */
+const C=[
+{t:"Aircraft Production",s:"The Arsenal of Democracy",img:"images/ch1.jpg",cap:"Suggested photo: B-24 bombers on the Willow Run assembly line (Library of Congress / National Archives)",
+b:"The Army and Navy want 60,000 aircraft in 1942 and 125,000 in 1943. In 1939 the nation built about 2,100 military planes. Aircraft makers have limited factory space and few workers. Automakers, however, build 3.6 million cars a year, own huge assembly plants, and employ skilled machinists. Aluminum is in short supply.",
+o:[["Convert automobile plants to build aircraft and parts, use assembly-line methods, and give aluminum a war priority.",5],["Expand the existing aircraft companies' factories and hire more workers, leaving carmakers alone.",3],["Place orders and let each company set its own pace based on profit.",-3],["Build planes in small craft shops to maximize quality, even if output is low.",-5]],
+d:"Auto production for civilians stopped in early 1942. Ford's Willow Run plant eventually built a B-24 bomber about every hour. U.S. factories produced roughly 300,000 aircraft during the war."},
+{t:"The Steel Crisis",s:"Allocating critical resources",img:"images/ch2.jpg",cap:"Suggested photo: steel mill workers or a scrap metal drive, 1942",
+b:"U.S. mills can produce about 88 million tons of steel a year. Requests from the Army, Navy, Maritime Commission, railroads, and civilian industries total about 110 million tons. Tanks, ships, and guns cannot be built if steel goes to the wrong places.",
+o:[["Set up a priority system that gives war production first claim on steel, bans nonessential civilian uses, and runs scrap drives.",5],["Run scrap drives and expand the mills, and trust industries to share fairly.",3],["Fill orders in the order received, starting with the largest customers.",-3],["Give every industry, military and civilian, an equal share.",-5]],
+d:"The War Production Board used priority ratings, then the Controlled Materials Plan (1943) to divide steel, copper, and aluminum. Civilian goods like refrigerators were largely halted. Scrap drives collected millions of tons."},
+{t:"Building the Fleet",s:"Winning the Battle of Production",img:"images/ch3.jpg",cap:"Suggested photo: Liberty ship launching at a Kaiser shipyard",
+b:"German U-boats sank hundreds of Allied cargo ships in 1942, about 6 million tons in total. Traditional shipyards need nearly a year to finish one cargo ship using skilled riveters. Millions of tons of supplies must cross the Atlantic. Skilled shipbuilders are scarce.",
+o:[["Mass-produce one standard design (the Liberty ship), weld prefabricated sections, build new yards, and train workers on single tasks.",5],["Add workers to existing yards and keep the traditional riveted methods.",3],["Custom-design each ship for the best performance on its route.",-3],["Pause new construction until the U-boat threat is reduced.",-5]],
+d:"Liberty ships were welded from prefabricated parts. Average build time dropped to about 42 days; one was finished in under five. About 2,700 were built, and by 1943 launches exceeded sinkings."},
+{t:"The Labor Shortage",s:"Keeping factories running",img:"images/ch4.jpg",cap:"Suggested photo: women riveters or welders; Black workers in a defense plant",
+b:"About 16 million Americans will serve in the military. Factories face a shortage of over a million workers. Many defense plants refuse to hire Black workers, and many refuse women. In 1941 civil rights leader A. Philip Randolph threatened a march on Washington over discrimination.",
+o:[["Recruit women, train new workers quickly, and enforce a ban on discrimination in defense hiring.",5],["Recruit and train women but leave hiring discrimination against minorities alone.",3],["Extend existing workers' hours to 80 a week to avoid hiring new people.",-3],["Hire only men and wait for veterans to return.",-5]],
+d:"Women in the workforce grew from about 12 million to over 18 million. Executive Order 8802 created the Fair Employment Practices Committee, though enforcement was uneven. Black, Mexican American, and other workers entered war industry in large numbers."},
+{t:"The Fuel Crisis",s:"Getting fuel where it matters most",img:"images/ch5.jpg",cap:"Suggested photo: gasoline ration stickers or a Victory Speed poster",
+b:"The East Coast gets nearly all its oil by tanker, and U-boats are sinking dozens of tankers off U.S. shores. Rubber is short, so tires cannot be replaced. Military vehicles, aircraft, and ships need huge quantities of fuel. Most workers drive to their jobs.",
+o:[["Ration gasoline, set a 35 mph speed limit, build oil pipelines from Texas, and give military and war-plant needs priority.",5],["Ration gasoline nationwide but do nothing about oil transport.",3],["Ban all civilian driving.",-3],["Let prices rise freely and let the market decide who gets gas.",-5]],
+d:"Rationing began on the East Coast in May 1942 and went nationwide in December. Workers in essential jobs received more stickers. The Big Inch and Little Big Inch pipelines carried oil from Texas to the Northeast."},
+{t:"The Transportation Bottleneck",s:"Moving the war machine",img:"images/ch6.jpg",cap:"Suggested photo: troop train, 1942, or a crowded railroad station",
+b:"Railroads must carry about 90% of Army freight and nearly all troop movements. Tires and gasoline are scarce, so trucking is limited. Freight cars sit half-empty while war plants wait on parts, and trains are crowded with ordinary travelers.",
+o:[["Coordinate all shipping, give war freight priority, load cars fully, and discourage nonessential civilian travel.",5],["Buy more locomotives and freight cars but set no shipping priorities.",3],["Shift most freight to trucks.",-3],["Let railroads schedule shipments by profitability.",-5]],
+d:"The Office of Defense Transportation controlled schedules and loads. Posters asked 'Is this trip necessary?' Railroads moved record freight and nearly 30 million troops."},
+{t:"Feeding America",s:"Victory Gardens and food supplies",img:"images/ch7.jpg",cap:"Suggested photo: Victory Garden poster or ration book",
+b:"The military and Allies need huge food shipments. Many farm workers have left for the service. Sugar, meat, butter, and canned goods are growing scarce, and prices are rising. Americans want to help but also fear hoarding.",
+o:[["Encourage Victory Gardens, ration scarce foods with a points system, control prices, and support farm labor.",5],["Encourage Victory Gardens and voluntary conservation only.",3],["Send all surplus food to the military and Allies with no civilian protection.",-3],["End price controls so farmers produce more.",-5]],
+d:"About 20 million Victory Gardens supplied roughly 40% of fresh vegetables by 1944. The Office of Price Administration ran rationing and price controls to fight hoarding and inflation."},
+{t:"Financing the War",s:"War Bonds and public participation",img:"images/ch8.jpg",cap:"Suggested photo: War Bond poster or children buying War Stamps",
+b:"The war will cost roughly $300 billion. Only about 4 million Americans pay income tax. Wages are rising, but there are few consumer goods to buy, which threatens inflation. Officials want citizens to feel invested in the war.",
+o:[["Hold bond drives with stamps for children, bring millions into the income tax, and use withholding to collect it.",5],["Sell bonds with posters and celebrity appeals but keep taxes unchanged.",3],["Print more money.",-3],["Borrow only from banks and keep the public out of it.",-5]],
+d:"Eight war loan drives raised about $185 billion. Income taxpayers grew from about 4 million to roughly 40 million, and payroll withholding began in 1943. Savings helped slow inflation."},
+{t:"Propaganda and Public Morale",s:"Keeping the nation united",img:"images/ch9.jpg",cap:"Suggested photo: 'Loose Lips Sink Ships' or other OWI poster",
+b:"Americans must support enlistment and production, and enemy spies want information about ship sailings. Rumors and rival newspapers are spreading confusion. Officials fear both leaks and a loss of public trust.",
+o:[["Create an agency to share truthful information, ask the press to withhold only genuine military secrets, and run clear posters and films.",5],["Run posters and radio ads for production and enlistment without addressing security.",3],["Censor all bad news, including casualties and defeats.",-3],["Spread exaggerated enemy atrocity stories to boost anger.",-5]],
+d:"The Office of War Information (1942) coordinated messaging; the Office of Censorship asked for voluntary press restraint on troop movements. 'Loose lips sink ships' became famous."},
+{t:"Civil Liberties During Wartime",s:"Executive Order 9066",img:"images/ch10.jpg",cap:"Suggested photo: Japanese American families at a relocation notice (Dorothea Lange / National Archives)",
+b:"After Pearl Harbor, fear and prejudice grow on the West Coast. About 120,000 people of Japanese ancestry live there; about two-thirds are U.S. citizens. The FBI has already arrested suspected spies. No Japanese American has been shown to commit sabotage. Germans and Italians face no mass removal.",
+o:[["Investigate individuals on evidence, guard key sites, and protect constitutional rights and the public from mob violence.",5],["Guard key sites and investigate suspects, but stay silent on the prejudice behind the calls for removal.",3],["Remove only non-citizens of Japanese ancestry.",-3],["Remove everyone of Japanese ancestry from the West Coast.",-5]],
+d:"What America actually did: Executive Order 9066 (Feb. 1942) led to the forced removal and incarceration of about 120,000 people. The Supreme Court upheld it in Korematsu (1944). In 1988 Congress apologized and paid $20,000 to survivors. Note: the 5-point answer is the one historians judge correct now, not what officials chose."}
 ];
-
-let currentMission = 0;
-let score = 0;
-let student = "";
-let answered = false;
-
-function startGame() {
-  student = document.getElementById("studentName").value.trim();
-
-  if (!student) {
-    alert("Enter your name before accepting the mission.");
-    document.getElementById("studentName").focus();
-    return;
-  }
-
-  currentMission = 0;
-  score = 0;
-  document.getElementById("startScreen").classList.add("hidden");
-  document.getElementById("resultScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
-
-  renderMission();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function renderMission() {
-  answered = false;
-  const m = missions[currentMission];
-
-  document.getElementById("challengeCounter").textContent =
-    `CHALLENGE ${currentMission + 1} OF ${missions.length}`;
-  document.getElementById("topScore").textContent = score;
-  document.getElementById("sideScore").textContent = score;
-  document.getElementById("scoreFill").style.width =
-    (Math.max(0,score) / 40 * 100) + "%";
-  document.getElementById("scoreMessage").textContent =
-    score >= 26 ? "You are on track to pass." : "Make careful decisions to earn points.";
-
-  document.getElementById("missionCategory").textContent = m.category;
-  document.getElementById("missionTitle").textContent = m.title;
-  document.getElementById("missionStory").textContent = m.story;
-  document.getElementById("missionLocation").textContent = m.location;
-  document.getElementById("decisionQuestion").textContent = m.question;
-
-  /*
-    IMAGE CONNECTION:
-    Each mission has an image property from challenge-01.jpg to challenge-10.jpg.
-    This sets the matching image whenever a challenge loads.
-  */
-  const art = document.getElementById("missionArt");
-  art.style.backgroundImage = `url("arsenal_images/${m.image}")`;
-  art.setAttribute("aria-label", "Historical illustration for " + m.title);
-
-  const factsList = document.getElementById("missionFacts");
-  factsList.innerHTML = "";
-  m.facts.forEach(fact => {
-    const li = document.createElement("li");
-    li.textContent = fact;
-    factsList.appendChild(li);
-  });
-
-  const choices = document.getElementById("choices");
-  choices.innerHTML = "";
-  const letters = ["A","B","C","D"];
-
-  m.options.forEach((option,index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "choice";
-
-    const letter = document.createElement("span");
-    letter.className = "letter";
-    letter.textContent = letters[index];
-
-    const choiceText = document.createElement("span");
-    choiceText.className = "choice-text";
-    choiceText.textContent = option.text;
-
-    button.appendChild(letter);
-    button.appendChild(choiceText);
-    button.addEventListener("click", () => selectChoice(index));
-    choices.appendChild(button);
-  });
-
-  const feedback = document.getElementById("feedback");
-  feedback.className = "feedback hidden";
-  feedback.innerHTML = "";
-  document.getElementById("nextButton").classList.add("hidden");
-}
-
-function selectChoice(index) {
-  if (answered) return;
-  answered = true;
-
-  const chosen = missions[currentMission].options[index];
-  score += chosen.score;
-
-  document.getElementById("topScore").textContent = score;
-  document.getElementById("sideScore").textContent = score;
-  document.getElementById("scoreFill").style.width =
-    (Math.max(0,score) / 40 * 100) + "%";
-
-  document.getElementById("scoreMessage").textContent =
-    score >= 26 ? "You are on track to pass." : "Keep making careful decisions.";
-
-  document.querySelectorAll(".choice").forEach(button => button.disabled = true);
-
-  const feedback = document.getElementById("feedback");
-  feedback.className = "feedback " + (chosen.score >= 2 ? "good" : "bad");
-  feedback.innerHTML = "";
-
-  const heading = document.createElement("h3");
-  heading.textContent = "Decision Report";
-  feedback.appendChild(heading);
-
-  const points = document.createElement("p");
-  points.className = "points";
-  points.textContent = (chosen.score > 0 ? "+" : "") + chosen.score + " points";
-  feedback.appendChild(points);
-
-  const explanation = document.createElement("p");
-  explanation.textContent = chosen.feedback;
-  feedback.appendChild(explanation);
-
-  const running = document.createElement("p");
-  const strong = document.createElement("strong");
-  strong.textContent = "Running score: ";
-  running.appendChild(strong);
-  running.appendChild(document.createTextNode(score + " / 40"));
-  feedback.appendChild(running);
-
-  const nextButton = document.getElementById("nextButton");
-  nextButton.textContent = currentMission === missions.length - 1
-    ? "Finish Certification →"
-    : "Next Challenge →";
-  nextButton.classList.remove("hidden");
-}
-
-function nextMission() {
-  if (!answered) return;
-
-  if (currentMission < missions.length - 1) {
-    currentMission++;
-    renderMission();
-    window.scrollTo({top:0,behavior:"smooth"});
-  } else {
-    finishGame();
-  }
-}
-
-function expertise(value) {
-  if (value >= 36) return {
-    level:"LEVEL 4 — MASTER COMMANDER",
-    description:"Outstanding leadership. You made consistently strong decisions across the home front."
-  };
-  if (value >= 31) return {
-    level:"LEVEL 3 — SENIOR EXECUTIVE",
-    description:"Excellent work. You showed strong understanding of wartime production and national priorities."
-  };
-  if (value >= 26) return {
-    level:"LEVEL 2 — CERTIFIED EXECUTIVE",
-    description:"You passed certification and demonstrated the knowledge needed to support the war effort."
-  };
-  return {
-    level:"LEVEL 1 — EXECUTIVE IN TRAINING",
-    description:"You have not yet reached the 26-point passing score. Review your notes and restart the mission."
-  };
-}
-
-function finishGame() {
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("resultScreen").classList.remove("hidden");
-
-  const passed = score >= 26;
-  const level = expertise(score);
-  const result = document.getElementById("resultContent");
-  result.innerHTML = "";
-
-  const cert = document.createElement("div");
-  cert.className = "certificate";
-
-  const eyebrow = document.createElement("div");
-  eyebrow.className = "eyebrow";
-  eyebrow.textContent = "United States Home Front Command";
-  cert.appendChild(eyebrow);
-
-  const title = document.createElement("h1");
-  title.textContent = passed ? "Certificate of Expertise" : "Mission Report";
-  cert.appendChild(title);
-
-  const subtitle = document.createElement("p");
-  subtitle.textContent = passed ? "This certifies that" : "This report is presented to";
-  cert.appendChild(subtitle);
-
-  const name = document.createElement("div");
-  name.className = "cert-name";
-  name.textContent = student;
-  cert.appendChild(name);
-
-  const achievement = document.createElement("p");
-  achievement.textContent = passed
-    ? "has completed the Arsenal of Democracy Home Front Command mission."
-    : "completed the Home Front Command mission but has not yet passed certification.";
-  cert.appendChild(achievement);
-
-  const scoreLine = document.createElement("h2");
-  scoreLine.textContent = "FINAL SCORE: " + score + " / 40";
-  cert.appendChild(scoreLine);
-
-  const levelBox = document.createElement("div");
-  levelBox.className = "cert-level";
-  levelBox.textContent = level.level;
-  cert.appendChild(levelBox);
-
-  const description = document.createElement("p");
-  description.textContent = level.description;
-  cert.appendChild(description);
-
-  const threshold = document.createElement("p");
-  threshold.innerHTML = passed
-    ? "<strong>PASSING STANDARD ACHIEVED: 26 POINTS</strong>"
-    : "<strong>PASSING STANDARD: 26 POINTS — RESTART REQUIRED</strong>";
-  cert.appendChild(threshold);
-
-  const signature = document.createElement("p");
-  signature.style.marginTop = "35px";
-  signature.innerHTML =
-    "By order of the President of the United States<br>" +
-    "<strong>Franklin D. Roosevelt</strong><br>Commander-in-Chief";
-  cert.appendChild(signature);
-
-  result.appendChild(cert);
-
-  document.getElementById("printButton").textContent =
-    passed ? "Print / Save Certificate" : "Print Mission Report";
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function restartGame() {
-  currentMission = 0;
-  score = 0;
-  answered = false;
-
-  document.getElementById("resultScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("startScreen").classList.remove("hidden");
-  document.getElementById("studentName").value = "";
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-</script>
-</body>
-</html>
+const MAX=C.length*5,PASS=.8;
+let i=-1,score=0,log=[],pick=null,order=[],locked=false;
+const $=document.getElementById('app');
+function shuffle(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
+function img(c){return `<img class="ph" src="${c.img}" alt="${c.cap}" onerror="this.outerHTML='<div class=&quot;ph fb&quot;>${c.cap.replace(/'/g,'')}</div>'"><p class="cap">${c.cap}</p>`}
+function top(){return `<div class="top"><span>Challenge ${i+1} of ${C.length}</span><span>Score: ${score}</span></div><div class="bar"><i style="width:${(i/C.length)*100}%"></i></div>`}
+function intro(){$.innerHTML=`<div class="card"><h2>The White House, December 8, 1941</h2>
+<p><b>My fellow Americans:</b></p>
+<p>Yesterday, December 7, Japanese forces bombed Pearl Harbor. Our nation is now at war with Japan, and Germany and Italy have declared war on us. The fight will be won on battlefields, and it will also be won in our factories, farms, railroads, and homes.</p>
+<div class="def"><b>The home front</b> is everything civilians do at home to support a war: building weapons, growing food, saving fuel, buying bonds, and working in the factories, while the military fights overseas.</div>
+<p>Over the next ten challenges you will allocate resources and make policy decisions. Read each briefing and use its numbers. Some choices sound sensible and are not. Our goal is a score of <b>80% or higher (${PASS*MAX} of ${MAX} points)</b>.</p>
+<p><i>- Franklin D. Roosevelt (classroom dramatization, not an actual quotation)</i></p>
+<button class="btn" onclick="next()">Begin mobilization</button></div>`}
+function next(){i++;if(i>=C.length)return end();const c=C[i];pick=null;locked=false;order=shuffle(c.o);
+$.innerHTML=top()+`<div class="card"><h2>${c.t}</h2><h3>${c.s}</h3>${img(c)}<p>${c.b}</p><h3>Your decision</h3><div id="opts"></div><button class="btn" id="lock" disabled onclick="lock()">Lock in answer</button></div>`;drawOpts();window.scrollTo(0,0)}
+function drawOpts(){document.getElementById('opts').innerHTML=order.map((o,k)=>`<button class="opt ${pick===k?'sel':''}" onclick="sel(${k})">${'ABCD'[k]}. ${o[0]}</button>`).join('')}
+function sel(k){pick=k;drawOpts();document.getElementById('lock').disabled=false}
+function lock(){const c=C[i],o=order[pick],p=o[1],best=c.o.find(x=>x[1]==5);score+=p;log.push(p);
+$.innerHTML=top()+`<div class="card"><h2>Discovery: ${c.t}</h2><div class="pts ${p>0?'good':'bad'}">${p>0?'+':''}${p} points</div>
+<p><b>You chose:</b> ${o[0]}</p>${p<5?`<div class="best"><b>Best answer (+5):</b> ${best[0]}</div>`:''}
+<p><b>What America did:</b> ${c.d}</p><button class="btn" onclick="next()">${i==C.length-1?'See final results':'Next challenge'}</button></div>`;window.scrollTo(0,0)}
+function end(){const pct=Math.max(0,Math.round(score/MAX*100)),win=score/MAX>=PASS;
+$.innerHTML=`<div class="card"><h1 style="color:var(--navy)">${win?'Victory on the home front':'The home front falls short'}</h1><div class="pts ${win?'good':'bad'}">${score} of ${MAX} points (${pct}%)</div>
+<p>${win?'You met the 80% goal. Your decisions kept American production moving.':'You did not reach 80%. Review the discovery notes and try again with the data in each briefing.'}</p>
+<table><tr><th>Challenge</th><th>Points</th></tr>${C.map((c,k)=>`<tr><td>${k+1}. ${c.t}</td><td>${log[k]>0?'+':''}${log[k]}</td></tr>`).join('')}</table>
+<button class="btn" onclick="i=-1;score=0;log=[];intro()">Play again</button></div>`}
+intro();
+</script></body></html>

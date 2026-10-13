@@ -1,100 +1,556 @@
+
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mobilize the Home Front, 1941</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDR's Home Front Command</title>
 <style>
-:root{--navy:#10213a;--ink:#1b1f27;--panel:#e9edf0;--gold:#f0b323;--red:#a8281f;--green:#2f6b3f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--navy);color:var(--ink);font-family:'Libre Baskerville',Georgia,serif;line-height:1.65}
-main{max-width:760px;margin:0 auto;padding:24px 16px 60px}
-h1,h2,h3{font-family:Oswald,Impact,sans-serif;letter-spacing:.02em;margin:.2em 0}
-h1{font-size:2.6rem;color:var(--gold);line-height:1.1}
-.card{background:var(--panel);border-top:8px solid var(--gold);padding:22px 24px;margin-bottom:18px}
-.top{color:#fff;display:flex;justify-content:space-between;font-family:Oswald,sans-serif;margin-bottom:10px}
-.bar{height:8px;background:#344a6b;margin-bottom:16px}.bar i{display:block;height:100%;background:var(--gold)}
-.ph{width:100%;aspect-ratio:16/9;object-fit:cover;background:#2a3c58;display:block;margin-bottom:6px}
-.ph.fb{color:#cdd6e3;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:.9rem}
-.cap{font-size:.78rem;color:#555;margin:0 0 14px}
-.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #aab4bf;padding:12px 14px;margin:10px 0;cursor:pointer}
-.opt:hover{border-color:var(--navy)}.opt.sel{border-color:var(--navy);background:#dbe6f5;box-shadow:inset 6px 0 0 var(--navy)}
-.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.btn{font-family:Oswald,sans-serif;font-size:1.15rem;background:var(--red);color:#fff;border:0;padding:12px 28px;cursor:pointer;margin-top:10px}
-.btn:disabled{background:#999;cursor:not-allowed}
-.pts{font-family:Oswald,sans-serif;font-size:2.4rem}.good{color:var(--green)}.bad{color:var(--red)}
-.best{border-left:6px solid var(--green);background:#fff;padding:10px 14px;margin:12px 0}
-table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:6px;border-bottom:1px solid #b8c0c9;text-align:left}
-.def{background:#fff;border-left:6px solid var(--red);padding:10px 14px;margin:14px 0}
-</style></head><body><main id="app"></main>
+:root {
+  --navy:#172b43; --red:#a52a2a; --cream:#f4efdf;
+  --paper:#fffdf5; --gold:#d3ad58; --ink:#202a35;
+  --green:#326b4a;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif; line-height:1.55;
+}
+header {
+  background:var(--navy); color:white; padding:22px 16px;
+  border-bottom:6px solid var(--gold); text-align:center;
+}
+header .eyebrow {
+  text-transform:uppercase; letter-spacing:3px; font-size:.76rem;
+  color:#e6cf92; font-family:Arial,sans-serif;
+}
+h1 { margin:5px 0; font-size:clamp(1.8rem,5vw,3rem); }
+header p { margin:0; }
+main { max-width:1050px; margin:22px auto; padding:0 14px 40px; }
+.panel {
+  background:var(--paper); border:1px solid #d5cbb4;
+  border-radius:8px; padding:22px; margin-bottom:18px;
+  box-shadow:0 3px 10px #172b4310;
+}
+h2,h3 { color:var(--navy); line-height:1.2; }
+h2 { margin-top:0; }
+button {
+  cursor:pointer; border:0; border-radius:5px; padding:12px 17px;
+  background:var(--navy); color:white; font-weight:bold; font-size:1rem;
+}
+button:hover { filter:brightness(1.16); }
+button:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+button:disabled { opacity:.45; cursor:not-allowed; }
+.primary { background:var(--red); }
+.secondary { background:#555f68; }
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.stat {
+  padding:12px; background:#e9e2d0; border-radius:5px;
+  text-align:center; font-family:Arial,sans-serif;
+}
+.stat strong { display:block; font-size:1.45rem; color:var(--navy); }
+.stat span { font-size:.76rem; text-transform:uppercase; }
+.progress-track { height:9px; background:#d9d2c3; border-radius:10px; overflow:hidden; margin:15px 0; }
+#progress { height:100%; width:0; background:var(--red); transition:width .3s; }
+.challenge-heading {
+  display:flex; justify-content:space-between; gap:12px; align-items:center;
+  flex-wrap:wrap;
+}
+.kicker { color:var(--red); font:bold .78rem Arial,sans-serif; letter-spacing:1.5px; text-transform:uppercase; }
+.hero {
+  width:100%; max-height:390px; object-fit:cover; display:block;
+  background:#ded5c2; border:4px solid white; outline:1px solid #c6b99e;
+  margin:16px 0 7px;
+}
+.caption { font-size:.84rem; color:#625b50; margin-bottom:18px; }
+.brief {
+  background:#eae4d4; padding:16px; border-left:5px solid var(--gold);
+  margin:15px 0;
+}
+.options { display:grid; gap:10px; }
+.option {
+  background:white; color:var(--ink); text-align:left;
+  border:2px solid #c9c0ae; padding:15px; font-weight:normal;
+}
+.option:hover { border-color:var(--red); background:#fbf4e6; filter:none; }
+.option strong { display:block; color:var(--navy); margin-bottom:4px; }
+.option.selected { border-color:var(--green); background:#e8f2e8; }
+.option small { display:block; color:#5e5e5e; margin-top:5px; line-height:1.45; }
+#feedback { margin-top:16px; padding:16px; border-radius:5px; }
+.good { background:#e3eee3; border-left:5px solid var(--green); }
+.bad { background:#f5e5de; border-left:5px solid var(--red); }
+.neutral { background:#e8eaf0; border-left:5px solid var(--navy); }
+.reflection { width:100%; min-height:95px; padding:12px; font:1rem Georgia,serif; }
+.note { color:#615d55; font-size:.9rem; }
+footer { text-align:center; padding:18px; font-size:.82rem; color:#625b50; }
+.hidden { display:none !important; }
+@media(max-width:600px) {
+  .grid { grid-template-columns:repeat(2,1fr); }
+  .panel { padding:15px; }
+  button { max-width:100%; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Executive Office • Washington, D.C.</div>
+  <h1>FDR's Home Front Command</h1>
+  <p>America's Arsenal of Democracy — 1941–1945</p>
+</header>
+
+<main>
+  <section id="start" class="panel">
+    <div class="kicker">Top Secret • Presidential Assignment</div>
+    <h2>Your Mission: Organize America's Home Front</h2>
+    <p><strong>Washington, December 1941.</strong> The attack on Pearl Harbor has brought the United States into World War II. President Franklin D. Roosevelt needs a team to coordinate factories, workers, food, money, public information, and civilian security.</p>
+    <p>You are a member of the President's home-front organizing team. Your job is to make ten difficult decisions that help mobilize the country for war.</p>
+    <p>Every option has advantages, costs, and consequences. There are no magical solutions: your team must balance speed, fairness, production, public cooperation, and the needs of American service members.</p>
+
+    <div class="brief">
+      <h3>How to play</h3>
+      <ul>
+        <li>Read the historical intelligence briefing and inspect the photograph.</li>
+        <li>Choose one of four realistic policy decisions.</li>
+        <li>Read the consequences and track your team's national readiness.</li>
+        <li>Complete all ten challenges and submit a final presidential briefing.</li>
+      </ul>
+      <p class="note">This is a classroom simulation. Numerical changes are illustrative game mechanics, not actual historical measurements.</p>
+    </div>
+
+    <h3>Your starting resources</h3>
+    <div class="grid">
+      <div class="stat"><strong>50</strong><span>Production</span></div>
+      <div class="stat"><strong>50</strong><span>Supplies</span></div>
+      <div class="stat"><strong>50</strong><span>Public Support</span></div>
+      <div class="stat"><strong>50</strong><span>Readiness</span></div>
+    </div>
+    <p class="note">Each resource starts at 50 and is kept between 0 and 100. Production measures industrial output, supplies measures civilian and military material availability, public support measures cooperation and trust, and readiness measures the country's overall ability to sustain the war effort.</p>
+    <button class="primary" onclick="startGame()">REPORT FOR DUTY</button>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="panel">
+      <div class="challenge-heading">
+        <div>
+          <div class="kicker" id="phase">Challenge 1 of 10</div>
+          <h2 id="title"></h2>
+        </div>
+        <strong id="points">Score: 0</strong>
+      </div>
+      <div class="progress-track"><div id="progress"></div></div>
+      <div class="grid">
+        <div class="stat"><strong id="production">50</strong><span>Production</span></div>
+        <div class="stat"><strong id="supplies">50</strong><span>Supplies</span></div>
+        <div class="stat"><strong id="support">50</strong><span>Public Support</span></div>
+        <div class="stat"><strong id="readiness">50</strong><span>Readiness</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <img id="photo" class="hero" alt="Historical World War II home-front photograph">
+      <div class="caption" id="caption"></div>
+      <div class="kicker">Intelligence Briefing</div>
+      <div id="briefing"></div>
+      <div class="brief">
+        <strong>YOUR ORDERS</strong>
+        <p id="orders"></p>
+      </div>
+      <h3>Select your policy</h3>
+      <p class="note">Consider the short-term benefits, resource costs, and likely consequences before committing.</p>
+      <div id="options" class="options"></div>
+      <div id="feedback" class="hidden" aria-live="polite"></div>
+      <div style="margin-top:18px">
+        <button id="next" class="primary hidden" onclick="nextChallenge()">ACCEPT REPORT &amp; CONTINUE</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="finish" class="hidden">
+    <div class="panel">
+      <div class="kicker">Executive Office • Final Report</div>
+      <h2>Presidential Mission Debrief</h2>
+      <p id="ending"></p>
+      <div class="grid">
+        <div class="stat"><strong id="fp">0</strong><span>Production</span></div>
+        <div class="stat"><strong id="fs">0</strong><span>Supplies</span></div>
+        <div class="stat"><strong id="fu">0</strong><span>Public Support</span></div>
+        <div class="stat"><strong id="fr">0</strong><span>Readiness</span></div>
+      </div>
+      <h3>Your record</h3>
+      <p id="scoreReport"></p>
+      <h3>Write your final briefing to President Roosevelt</h3>
+      <p>In a short response, identify your most important decision, explain one trade-off you faced, and evaluate whether wartime mobilization always protected American democratic values. Use evidence from at least three challenges.</p>
+      <textarea id="reflection" class="reflection" placeholder="Mr. President, our team's record shows..."></textarea>
+      <p><button onclick="printReport()">PRINT FINAL REPORT</button>
+      <button class="secondary" onclick="restartGame()">RESTART SIMULATION</button></p>
+      <p class="note">Your final written response is not sent to a server. Print the report or copy your response before restarting.</p>
+    </div>
+    <div class="panel">
+      <h3>Historical reference desk</h3>
+      <ul>
+        <li><a href="https://www.archives.gov/research/military/ww2/photos" target="_blank" rel="noopener">National Archives: World War II photographs</a></li>
+        <li><a href="https://www.archives.gov/education/lessons/wwii-women.html" target="_blank" rel="noopener">National Archives: Women in the workforce</a></li>
+        <li><a href="https://www.archives.gov/news/topics/japanese-american-internment" target="_blank" rel="noopener">National Archives: Japanese American incarceration</a></li>
+        <li><a href="https://www.nps.gov/articles/000/victory-gardens-on-the-world-war-ii-home-front.htm" target="_blank" rel="noopener">National Park Service: Victory gardens</a></li>
+        <li><a href="https://www.archives.gov/research/still-pictures/highlights/we-can-do-it" target="_blank" rel="noopener">National Archives: “We Can Do It!” poster</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer>
+  Classroom history simulation • Historical choices are simplified for learning.
+  <br>Photographs and posters are credited to their respective collections.
+</footer>
+
 <script>
-/* ===== EDIT CONTENT HERE. Option points: 5 best, 3 partial, -3 weak, -5 harmful ===== */
-const C=[
-{t:"Aircraft Production",s:"The Arsenal of Democracy",img:"images/ch1.jpg",cap:"Suggested photo: B-24 bombers on the Willow Run assembly line (Library of Congress / National Archives)",
-b:"The Army and Navy want 60,000 aircraft in 1942 and 125,000 in 1943. In 1939 the nation built about 2,100 military planes. Aircraft makers have limited factory space and few workers. Automakers, however, build 3.6 million cars a year, own huge assembly plants, and employ skilled machinists. Aluminum is in short supply.",
-o:[["Convert automobile plants to build aircraft and parts, use assembly-line methods, and give aluminum a war priority.",5],["Expand the existing aircraft companies' factories and hire more workers, leaving carmakers alone.",3],["Place orders and let each company set its own pace based on profit.",-3],["Build planes in small craft shops to maximize quality, even if output is low.",-5]],
-d:"Auto production for civilians stopped in early 1942. Ford's Willow Run plant eventually built a B-24 bomber about every hour. U.S. factories produced roughly 300,000 aircraft during the war."},
-{t:"The Steel Crisis",s:"Allocating critical resources",img:"images/ch2.jpg",cap:"Suggested photo: steel mill workers or a scrap metal drive, 1942",
-b:"U.S. mills can produce about 88 million tons of steel a year. Requests from the Army, Navy, Maritime Commission, railroads, and civilian industries total about 110 million tons. Tanks, ships, and guns cannot be built if steel goes to the wrong places.",
-o:[["Set up a priority system that gives war production first claim on steel, bans nonessential civilian uses, and runs scrap drives.",5],["Run scrap drives and expand the mills, and trust industries to share fairly.",3],["Fill orders in the order received, starting with the largest customers.",-3],["Give every industry, military and civilian, an equal share.",-5]],
-d:"The War Production Board used priority ratings, then the Controlled Materials Plan (1943) to divide steel, copper, and aluminum. Civilian goods like refrigerators were largely halted. Scrap drives collected millions of tons."},
-{t:"Building the Fleet",s:"Winning the Battle of Production",img:"images/ch3.jpg",cap:"Suggested photo: Liberty ship launching at a Kaiser shipyard",
-b:"German U-boats sank hundreds of Allied cargo ships in 1942, about 6 million tons in total. Traditional shipyards need nearly a year to finish one cargo ship using skilled riveters. Millions of tons of supplies must cross the Atlantic. Skilled shipbuilders are scarce.",
-o:[["Mass-produce one standard design (the Liberty ship), weld prefabricated sections, build new yards, and train workers on single tasks.",5],["Add workers to existing yards and keep the traditional riveted methods.",3],["Custom-design each ship for the best performance on its route.",-3],["Pause new construction until the U-boat threat is reduced.",-5]],
-d:"Liberty ships were welded from prefabricated parts. Average build time dropped to about 42 days; one was finished in under five. About 2,700 were built, and by 1943 launches exceeded sinkings."},
-{t:"The Labor Shortage",s:"Keeping factories running",img:"images/ch4.jpg",cap:"Suggested photo: women riveters or welders; Black workers in a defense plant",
-b:"About 16 million Americans will serve in the military. Factories face a shortage of over a million workers. Many defense plants refuse to hire Black workers, and many refuse women. In 1941 civil rights leader A. Philip Randolph threatened a march on Washington over discrimination.",
-o:[["Recruit women, train new workers quickly, and enforce a ban on discrimination in defense hiring.",5],["Recruit and train women but leave hiring discrimination against minorities alone.",3],["Extend existing workers' hours to 80 a week to avoid hiring new people.",-3],["Hire only men and wait for veterans to return.",-5]],
-d:"Women in the workforce grew from about 12 million to over 18 million. Executive Order 8802 created the Fair Employment Practices Committee, though enforcement was uneven. Black, Mexican American, and other workers entered war industry in large numbers."},
-{t:"The Fuel Crisis",s:"Getting fuel where it matters most",img:"images/ch5.jpg",cap:"Suggested photo: gasoline ration stickers or a Victory Speed poster",
-b:"The East Coast gets nearly all its oil by tanker, and U-boats are sinking dozens of tankers off U.S. shores. Rubber is short, so tires cannot be replaced. Military vehicles, aircraft, and ships need huge quantities of fuel. Most workers drive to their jobs.",
-o:[["Ration gasoline, set a 35 mph speed limit, build oil pipelines from Texas, and give military and war-plant needs priority.",5],["Ration gasoline nationwide but do nothing about oil transport.",3],["Ban all civilian driving.",-3],["Let prices rise freely and let the market decide who gets gas.",-5]],
-d:"Rationing began on the East Coast in May 1942 and went nationwide in December. Workers in essential jobs received more stickers. The Big Inch and Little Big Inch pipelines carried oil from Texas to the Northeast."},
-{t:"The Transportation Bottleneck",s:"Moving the war machine",img:"images/ch6.jpg",cap:"Suggested photo: troop train, 1942, or a crowded railroad station",
-b:"Railroads must carry about 90% of Army freight and nearly all troop movements. Tires and gasoline are scarce, so trucking is limited. Freight cars sit half-empty while war plants wait on parts, and trains are crowded with ordinary travelers.",
-o:[["Coordinate all shipping, give war freight priority, load cars fully, and discourage nonessential civilian travel.",5],["Buy more locomotives and freight cars but set no shipping priorities.",3],["Shift most freight to trucks.",-3],["Let railroads schedule shipments by profitability.",-5]],
-d:"The Office of Defense Transportation controlled schedules and loads. Posters asked 'Is this trip necessary?' Railroads moved record freight and nearly 30 million troops."},
-{t:"Feeding America",s:"Victory Gardens and food supplies",img:"images/ch7.jpg",cap:"Suggested photo: Victory Garden poster or ration book",
-b:"The military and Allies need huge food shipments. Many farm workers have left for the service. Sugar, meat, butter, and canned goods are growing scarce, and prices are rising. Americans want to help but also fear hoarding.",
-o:[["Encourage Victory Gardens, ration scarce foods with a points system, control prices, and support farm labor.",5],["Encourage Victory Gardens and voluntary conservation only.",3],["Send all surplus food to the military and Allies with no civilian protection.",-3],["End price controls so farmers produce more.",-5]],
-d:"About 20 million Victory Gardens supplied roughly 40% of fresh vegetables by 1944. The Office of Price Administration ran rationing and price controls to fight hoarding and inflation."},
-{t:"Financing the War",s:"War Bonds and public participation",img:"images/ch8.jpg",cap:"Suggested photo: War Bond poster or children buying War Stamps",
-b:"The war will cost roughly $300 billion. Only about 4 million Americans pay income tax. Wages are rising, but there are few consumer goods to buy, which threatens inflation. Officials want citizens to feel invested in the war.",
-o:[["Hold bond drives with stamps for children, bring millions into the income tax, and use withholding to collect it.",5],["Sell bonds with posters and celebrity appeals but keep taxes unchanged.",3],["Print more money.",-3],["Borrow only from banks and keep the public out of it.",-5]],
-d:"Eight war loan drives raised about $185 billion. Income taxpayers grew from about 4 million to roughly 40 million, and payroll withholding began in 1943. Savings helped slow inflation."},
-{t:"Propaganda and Public Morale",s:"Keeping the nation united",img:"images/ch9.jpg",cap:"Suggested photo: 'Loose Lips Sink Ships' or other OWI poster",
-b:"Americans must support enlistment and production, and enemy spies want information about ship sailings. Rumors and rival newspapers are spreading confusion. Officials fear both leaks and a loss of public trust.",
-o:[["Create an agency to share truthful information, ask the press to withhold only genuine military secrets, and run clear posters and films.",5],["Run posters and radio ads for production and enlistment without addressing security.",3],["Censor all bad news, including casualties and defeats.",-3],["Spread exaggerated enemy atrocity stories to boost anger.",-5]],
-d:"The Office of War Information (1942) coordinated messaging; the Office of Censorship asked for voluntary press restraint on troop movements. 'Loose lips sink ships' became famous."},
-{t:"Civil Liberties During Wartime",s:"Executive Order 9066",img:"images/ch10.jpg",cap:"Suggested photo: Japanese American families at a relocation notice (Dorothea Lange / National Archives)",
-b:"After Pearl Harbor, fear and prejudice grow on the West Coast. About 120,000 people of Japanese ancestry live there; about two-thirds are U.S. citizens. The FBI has already arrested suspected spies. No Japanese American has been shown to commit sabotage. Germans and Italians face no mass removal.",
-o:[["Investigate individuals on evidence, guard key sites, and protect constitutional rights and the public from mob violence.",5],["Guard key sites and investigate suspects, but stay silent on the prejudice behind the calls for removal.",3],["Remove only non-citizens of Japanese ancestry.",-3],["Remove everyone of Japanese ancestry from the West Coast.",-5]],
-d:"What America actually did: Executive Order 9066 (Feb. 1942) led to the forced removal and incarceration of about 120,000 people. The Supreme Court upheld it in Korematsu (1944). In 1988 Congress apologized and paid $20,000 to survivors. Note: the 5-point answer is the one historians judge correct now, not what officials chose."}
+"use strict";
+
+/*
+  Historical image URLs are Wikimedia Commons file redirects.
+  Images require internet access. If one is unavailable, a labeled
+  fallback is displayed; use the linked National Archives collections
+  for alternate verified primary-source images.
+*/
+const challenges = [
+{
+ title:"Mobilize the Arsenal of Democracy",
+ date:"December 1941 – 1942",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/We%20Can%20Do%20It%21.jpg",
+ caption:"The famous Westinghouse 'We Can Do It!' poster was created by J. Howard Miller in 1942. It was initially an internal company poster, not a universal national recruiting poster.",
+ briefing:`The United States must rapidly expand aircraft, ships, vehicles, weapons, and ammunition. The War Production Board, established in January 1942, coordinates industrial conversion and allocation of strategic materials. Automakers and other civilian manufacturers must adapt to wartime needs.`,
+ orders:"Decide how to convert industry from civilian goods to military production without creating unnecessary shortages or disrupting every factory at once.",
+ options:[
+  {label:"A. Prioritize a coordinated conversion plan",desc:"Use federal priorities, contracts, and material allocations to redirect major industries toward urgent military production.",delta:[10,-3,2,8],score:4,result:"A coordinated approach helps direct scarce materials toward war needs. Conversion still takes time, and civilian goods become harder to obtain.",lesson:"The War Production Board coordinated production priorities and resource allocation."},
+  {label:"B. Let each company decide independently",desc:"Rely on private firms to follow contracts and market incentives with limited centralized direction.",delta:[2,0,4,1],score:2,result:"Business flexibility may help some firms adapt quickly, but competing orders and material bottlenecks can slow national coordination.",lesson:"Private industry was essential, but wartime production required federal coordination."},
+  {label:"C. Keep civilian manufacturing mostly unchanged",desc:"Protect consumer choice and avoid a disruptive conversion of factories.",delta:[-7,3,3,-8],score:-2,result:"Civilian consumers retain more choices initially, but military contracts compete for resources and the war effort struggles to expand output.",lesson:"The scale of the war required a major shift from civilian to military production."},
+  {label:"D. Concentrate resources in a few favored firms",desc:"Give the largest defense contractors priority access to materials and contracts.",delta:[7,-5,-4,2],score:-1,result:"Large firms can scale up quickly, but concentrated contracts can create bottlenecks, regional imbalances, and concerns about fairness.",lesson:"Wartime procurement relied heavily on large firms while also involving smaller suppliers and federal oversight."}
+ ]
+},
+{
+ title:"Build the Workforce",
+ date:"1942",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Rosie%20the%20Riveter%20%281943%29.jpg",
+ caption:"Wartime recruiting imagery came in many forms. The best-known 'We Can Do It!' poster and the later popular image of Rosie the Riveter are related but not originally the same campaign.",
+ briefing:`Military mobilization draws millions of men into service, increasing demand for labor in shipyards, aircraft plants, and other industries. Women enter industrial jobs in large numbers. Black Americans and other workers confront discrimination in hiring and advancement. Training and transportation are also major obstacles.`,
+ orders:"Expand the skilled workforce while addressing labor shortages, training needs, and barriers that prevent qualified people from contributing.",
+ options:[
+  {label:"A. Expand training and recruit women and underrepresented workers",desc:"Fund job training, recruit broadly, and press employers to fill urgent vacancies.",delta:[9,-2,7,7],score:4,result:"More workers can enter essential industries. Training takes time, and discrimination and unequal working conditions do not disappear automatically.",lesson:"Women workers and Black workers made major contributions while facing persistent barriers."},
+  {label:"B. Offer overtime and bonuses to the existing workforce",desc:"Increase shifts and pay to boost output without a major new recruitment program.",delta:[5,-4,1,3],score:2,result:"Experienced workers can produce more quickly, but fatigue, accidents, and shortages of skilled labor remain concerns.",lesson:"Long hours helped production but could not replace the need for more workers."},
+  {label:"C. Concentrate training on workers already in defense jobs",desc:"Direct scarce instructors and equipment toward workers with the most experience.",delta:[4,1,-2,2],score:1,result:"Training resources are used efficiently in the short term, but the labor pool grows more slowly and existing barriers remain.",lesson:"Rapid training mattered, but exclusion limited access to opportunity."},
+  {label:"D. Rely mainly on military personnel returning to civilian jobs",desc:"Assume labor needs can be met through veterans and workers released from nonessential industries.",delta:[-5,2,1,-4],score:-2,result:"Some workers can be reassigned, but the military needs personnel and many new industrial jobs require specific training.",lesson:"The labor shortage required broad civilian recruitment and retraining."}
+ ]
+},
+{
+ title:"Feed the Nation and the Troops",
+ date:"1942–1944",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/War%20Ration%20Book%20Two.jpg",
+ caption:"Wartime ration books and ration stamps helped regulate access to goods in short supply. Check the National Archives' rationing records for original examples.",
+ briefing:`Wartime demand, shipping risks, and military procurement place pressure on supplies of items such as rubber, gasoline, sugar, meat, and processed foods. The Office of Price Administration manages price controls and rationing programs. Rationing is meant to distribute scarce goods and restrain inflation.`,
+ orders:"Choose a system that supports military supply while keeping the distribution of scarce civilian goods workable and reasonably fair.",
+ options:[
+  {label:"A. Use ration books and price controls for scarce goods",desc:"Set rules for purchasing selected goods and limit price increases.",delta:[1,8,5,7],score:4,result:"Rationing can distribute shortages more systematically and price controls can limit inflation, though enforcement and public frustration remain challenges.",lesson:"The OPA used rationing and price controls to manage important wartime shortages."},
+  {label:"B. Raise prices until demand falls",desc:"Allow scarcity to push prices higher, reducing purchases without extensive rationing.",delta:[2,5,-8,1],score:-1,result:"Higher prices can reduce demand, but poorer households have less access and inflationary pressure grows.",lesson:"Price alone would have distributed shortages unevenly across households."},
+  {label:"C. Ration only the military's direct suppliers",desc:"Protect military procurement while leaving most civilian purchasing unrestricted.",delta:[3,-5,2,-3],score:0,result:"Military orders receive priority, but civilian competition for supplies continues and shortages can worsen outside defense contracts.",lesson:"Civilian consumption also affected strategic materials and supply chains."},
+  {label:"D. Ask citizens to conserve voluntarily",desc:"Launch conservation campaigns and avoid compulsory purchasing limits wherever possible.",delta:[1,2,6,0],score:2,result:"Voluntary cooperation can build goodwill, but it may not reduce demand enough when supplies are severely constrained.",lesson:"Public cooperation mattered, but formal rationing was needed for many scarce goods."}
+ ]
+},
+{
+ title:"Finance the War",
+ date:"1942–1945",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Buy%20War%20Bonds%20poster.jpg",
+ caption:"War bond posters and campaigns encouraged Americans to lend money to the federal government. Verify poster details through the National Archives' wartime poster collections.",
+ briefing:`The war requires enormous public spending. The federal government uses taxes and borrowing, including war bond campaigns, to finance military operations. Strong demand and limited consumer goods can contribute to inflation, so financing choices affect household budgets and the economy.`,
+ orders:"Raise substantial funds for the war while considering inflation, household purchasing power, and the fairness of who bears the costs.",
+ options:[
+  {label:"A. Combine progressive taxation with war bond campaigns",desc:"Raise revenue through taxes and encourage households to buy bonds as a form of government lending.",delta:[3,7,5,8],score:4,result:"A mixed approach provides revenue and borrowing while encouraging civilian participation. Taxes and bond purchases still place real demands on households.",lesson:"War finance combined taxation, borrowing, and efforts to restrain inflation."},
+  {label:"B. Depend mostly on borrowing and bond drives",desc:"Keep immediate tax increases limited and seek widespread public investment in war bonds.",delta:[3,6,5,4],score:2,result:"Bond campaigns can mobilize savings and public support, but borrowing alone creates future obligations and may add inflationary pressure.",lesson:"War bonds were important, but they were not the only source of war finance."},
+  {label:"C. Pay for the war mainly by sharply increasing taxes",desc:"Raise broad tax revenue to reduce reliance on borrowing.",delta:[1,7,-5,5],score:1,result:"Revenue rises and borrowing needs may fall, but households and businesses face greater immediate costs.",lesson:"Taxation helped finance the war, but policymakers also had to maintain public cooperation."},
+  {label:"D. Postpone major financing decisions until later",desc:"Avoid immediate tax or borrowing changes and reassess after the next budget cycle.",delta:[-4,-5,1,-8],score:-3,result:"The government avoids immediate political conflict but risks funding shortfalls and weaker confidence in its ability to sustain the war.",lesson:"A prolonged industrial war required immediate, large-scale financing."}
+ ]
+},
+{
+ title:"Grow Food for Victory",
+ date:"1942–1945",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Victory%20Garden%20poster%20WWII.jpg",
+ caption:"Victory garden campaigns encouraged civilians to grow vegetables and conserve commercial food supplies. Original posters and photographs are available through the National Archives and National Park Service.",
+ briefing:`Millions of Americans plant victory gardens in yards, schools, and community spaces. Homegrown produce supplements household food and can ease pressure on commercial distribution. Meanwhile, farms face labor shortages because workers enter military service or industrial employment.`,
+ orders:"Support food production without assuming that home gardens can replace commercial farms or solve every shortage.",
+ options:[
+  {label:"A. Promote victory gardens and support farm labor",desc:"Provide gardening information and encourage seasonal farm work, while maintaining commercial agricultural production.",delta:[1,8,7,5],score:4,result:"Home gardens supplement food supplies and build participation. Commercial farms still need equipment, transport, and reliable workers.",lesson:"Victory gardens helped supplement national food supplies; they did not replace commercial agriculture."},
+  {label:"B. Focus almost entirely on large commercial farms",desc:"Direct resources toward high-volume agricultural production and distribution.",delta:[3,7,1,4],score:2,result:"Large farms can deliver substantial quantities of food, but local participation is weaker and labor bottlenecks may persist.",lesson:"Commercial agriculture was essential to feeding civilians and the armed forces."},
+  {label:"C. Ask households to cut food waste and preserve produce",desc:"Launch conservation and home-canning campaigns to stretch available supplies.",delta:[0,5,5,2],score:2,result:"Conservation can reduce waste and extend food supplies, but it cannot by itself resolve shortages of farm labor and transport.",lesson:"Food conservation complemented production and distribution."},
+  {label:"D. Shift most available resources from food production to weapons",desc:"Treat agricultural output as secondary to the immediate need for military equipment.",delta:[7,-10,-5,-3],score:-2,result:"Some industrial production may increase, but food shortages, transport competition, and civilian frustration threaten the broader effort.",lesson:"The war depended on food, agricultural workers, shipping, and industrial production together."}
+ ]
+},
+{
+ title:"Win the Information War at Home",
+ date:"1942–1944",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Loose%20lips%20sink%20ships%20poster.jpg",
+ caption:"'Loose lips might sink ships' was one of the best-known themes of wartime security posters. The Office of War Information also promoted public information and war-support campaigns.",
+ briefing:`The government wants Americans to understand the war, conserve resources, buy bonds, and avoid revealing sensitive military information. The Office of War Information coordinates many public-information activities. Propaganda can encourage participation, but misleading messages and excessive censorship can undermine public trust.`,
+ orders:"Build public cooperation while distinguishing legitimate protection of military secrets from misleading propaganda or unjustified suppression of criticism.",
+ options:[
+  {label:"A. Use clear public information and focused security warnings",desc:"Explain the reasons for conservation and mobilization while warning citizens not to disclose operational secrets.",delta:[2,3,8,6],score:4,result:"Clear messages can build cooperation and protect sensitive information, although officials must still decide what information is genuinely dangerous to reveal.",lesson:"The government used public-information campaigns and security warnings for different purposes."},
+  {label:"B. Use emotionally powerful patriotic propaganda",desc:"Rely on posters, films, slogans, and public campaigns to mobilize citizens.",delta:[5,2,5,4],score:2,result:"Patriotic appeals can motivate participation, but oversimplification may hide costs and reinforce prejudice.",lesson:"Propaganda shaped public attitudes and wartime participation."},
+  {label:"C. Restrict nearly all public discussion of wartime policy",desc:"Limit criticism and discussion to prevent confusion and protect morale.",delta:[1,2,-9,2],score:-2,result:"Some sensitive information may remain protected, but broad restrictions undermine public trust and democratic debate.",lesson:"National security claims do not make every restriction on public discussion justified."},
+  {label:"D. Leave all war communication to private media",desc:"Avoid a coordinated federal information campaign and rely on independent outlets.",delta:[0,0,2,-1],score:1,result:"Independent reporting remains important, but the government loses some ability to communicate consistent emergency instructions.",lesson:"Democracies must balance independent reporting, public information, and legitimate secrecy."}
+ ]
+},
+{
+ title:"Keep the Factories Running",
+ date:"1942–1944",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Rosie%20the%20Riveter%20%281943%29.jpg",
+ caption:"Wartime industrial workers included women and workers from many racial and ethnic backgrounds. Their contributions occurred alongside unequal treatment, occupational segregation, and labor disputes.",
+ briefing:`Wartime production depends on reliable workers, safe workplaces, raw materials, and transport. Labor disputes can interrupt output. The federal government creates mechanisms to mediate disputes, including the National War Labor Board. Executive Order 8802 prohibits racial discrimination in defense industries and federal employment, although discrimination continues.`,
+ orders:"Maintain production without ignoring workers' concerns about wages, safety, or discriminatory treatment.",
+ options:[
+  {label:"A. Mediate disputes and enforce fair-access policies",desc:"Use negotiations, workplace standards, and nondiscrimination measures to reduce disruption and expand the available workforce.",delta:[7,1,8,6],score:4,result:"Negotiation can preserve production and improve trust. It takes administrative effort, and fair policies require enforcement to make a difference.",lesson:"The National War Labor Board mediated disputes; Executive Order 8802 addressed discrimination in defense employment."},
+  {label:"B. Offer bonuses for meeting production targets",desc:"Reward plants and workers that meet agreed output goals.",delta:[6,-3,2,3],score:2,result:"Incentives can raise output, but poorly designed targets can increase fatigue, safety risks, or conflict over pay.",lesson:"Production incentives could help, but working conditions and labor relations also mattered."},
+  {label:"C. Use emergency orders to force an immediate return to work",desc:"Prioritize uninterrupted output and penalize workers who continue a dispute.",delta:[3,0,-8,2],score:-1,result:"Output may resume quickly, but unresolved grievances and coercion can damage morale and create future disruptions.",lesson:"Maintaining wartime production required more than compelling workers to return."},
+  {label:"D. Ignore workplace complaints until victory",desc:"Avoid diverting management time from production to labor and discrimination issues.",delta:[-5,1,-7,-4],score:-3,result:"Unresolved problems can worsen absenteeism, turnover, disputes, and distrust.",lesson:"Labor conditions were part of the wartime production challenge, not a separate issue."}
+ ]
+},
+{
+ title:"Protect the Home Front",
+ date:"1941–1945",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/World%20War%20II%20air%20raid%20warden.jpg",
+ caption:"Civil defense programs trained volunteers for emergency response, blackout procedures, fire prevention, and public safety. Use National Archives wartime photographs to compare local civil-defense activities.",
+ briefing:`The attack on Pearl Harbor creates fears of further attacks, sabotage, and espionage. Civil defense organizations prepare communities for emergencies. Wartime security is important, but rumors and suspicion can target innocent people. The United States mainland does not experience the sustained bombing campaigns seen in Britain and parts of Europe.`,
+ orders:"Prepare communities for credible emergencies without allowing fear to become a substitute for evidence.",
+ options:[
+  {label:"A. Train volunteer wardens and prepare emergency plans",desc:"Organize fire response, first aid, blackout guidance where appropriate, and reliable public alerts.",delta:[2,3,7,8],score:4,result:"Training improves readiness and gives citizens practical responsibilities. Plans must be proportionate to the actual risks faced by each community.",lesson:"Civil defense depended heavily on local volunteers and emergency preparedness."},
+  {label:"B. Focus security on verified threats and protect critical facilities",desc:"Coordinate intelligence, infrastructure protection, and credible reporting channels.",delta:[3,1,5,7],score:3,result:"Targeted precautions protect important sites while limiting unnecessary disruption, although authorities must guard against bias and false accusations.",lesson:"Security measures work best when based on evidence rather than rumor."},
+  {label:"C. Launch broad surveillance of suspicious-looking residents",desc:"Expand monitoring based on community reports and perceived warning signs.",delta:[1,-1,-9,1],score:-2,result:"Broad suspicion can waste resources, damage trust, and expose innocent people to discriminatory treatment.",lesson:"Fear and stereotypes can undermine both civil liberties and effective security."},
+  {label:"D. Assume the mainland faces no serious danger",desc:"Avoid preparedness spending so more resources remain available for military production.",delta:[2,2,1,-7],score:-2,result:"Some resources are saved, but emergency response and public confidence suffer when authorities lack credible plans.",lesson:"Preparedness and industrial production were complementary parts of national defense."}
+ ]
+},
+{
+ title:"Make a Decision on Japanese American Removal",
+ date:"February–1942 onward",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/Dorothea%20Lange%20-%20Japanese%20American%20internment.jpg",
+ caption:"Dorothea Lange and other photographers documented Japanese American removal in 1942. Many Japanese Americans were forcibly removed from their homes and incarcerated under wartime policy.",
+ briefing:`After Pearl Harbor, fear of espionage and military attack grows on the West Coast. On February 19, 1942, President Roosevelt signs Executive Order 9066, authorizing military exclusion areas. The order does not explicitly name Japanese Americans, but it is used to justify the forced removal and incarceration of Japanese Americans, including U.S. citizens, on a mass scale. German and Italian Americans face different policies; the treatment is not identical. No evidence established that mass incarceration of Japanese Americans was necessary as a group.`,
+ orders:"Advise the President on how to address security concerns while respecting evidence, individual rights, and constitutional principles.",
+ options:[
+  {label:"A. Reject mass removal; investigate credible individual threats",desc:"Use evidence-based investigations, due process, and targeted security measures instead of treating ancestry as proof of danger.",delta:[1,1,9,3],score:4,result:"This approach protects civil liberties and directs resources toward credible threats. It requires careful investigation and does not remove the wartime pressure to provide security.",lesson:"Japanese American mass incarceration was a grave injustice. Ancestry alone was not evidence of disloyalty."},
+  {label:"B. Continue the removal policy but promise humane treatment",desc:"Accept mass removal as a security measure while improving conditions and administrative safeguards.",delta:[2,-2,-8,2],score:-2,result:"Improved conditions would not correct the central injustice: people were deprived of liberty and property without individualized proof of wrongdoing.",lesson:"Better administration cannot make mass exclusion based on ancestry a fair or necessary policy."},
+  {label:"C. Use military exclusion zones with individualized review",desc:"Require specific evidence, review cases, and provide a process for challenging restrictions.",delta:[0,0,5,2],score:2,result:"Review and evidence offer stronger protections than blanket removal, though exclusion zones still require strict oversight and may infringe rights if too broad.",lesson:"Security restrictions should be narrowly justified, reviewable, and not based on ethnicity."},
+  {label:"D. Expand blanket removal to other ancestry groups",desc:"Apply the same broad restrictions to more communities to demonstrate uniformity.",delta:[1,-5,-10,-2],score:-4,result:"Expanding collective punishment creates greater injustice, damages public trust, and diverts resources without proving that individuals pose threats.",lesson:"Equal treatment does not mean extending an unjust policy to more people."}
+ ]
+},
+{
+ title:"Coordinate the Final Push",
+ date:"1943–1945",
+ image:"https://commons.wikimedia.org/wiki/Special:FilePath/WWII%20shipyard%20workers.jpg",
+ caption:"American shipyards and factories produced ships, aircraft, vehicles, and other supplies on a vast scale. Shipbuilding, transport, raw materials, and skilled labor remained interdependent.",
+ briefing:`By 1943, American industry is supplying U.S. forces and allies across multiple theaters. The challenge is no longer simply to produce more of everything: steel, shipping space, fuel, skilled workers, and transport capacity are limited. Production decisions must reflect changing military priorities and the difficulty of moving supplies across oceans.`,
+ orders:"Choose a final allocation strategy that connects production priorities with shipping capacity, military needs, and sustainable civilian support.",
+ options:[
+  {label:"A. Coordinate production with shipping and theater priorities",desc:"Match weapons and supplies to military needs, available transport, and the ability to deliver them where required.",delta:[7,6,4,10],score:4,result:"Coordination reduces the risk of producing goods that cannot be shipped promptly and helps align factories with actual operational needs.",lesson:"Industrial strength mattered most when goods could be transported to the forces that needed them."},
+  {label:"B. Maximize factory output above all other considerations",desc:"Set the highest possible production targets and resolve delivery issues afterward.",delta:[10,-5,-2,3],score:1,result:"Gross output rises, but bottlenecks in steel, labor, fuel, and shipping can leave important goods delayed or unusable at the front.",lesson:"Production totals alone do not measure the effectiveness of a supply system."},
+  {label:"C. Concentrate nearly all resources on one theater",desc:"Give one major campaign priority over competing operations and requests.",delta:[4,-2,-2,4],score:1,result:"Concentration may accelerate a selected campaign, but other theaters and allies risk shortages if their needs are ignored.",lesson:"Allied strategy involved difficult choices across Europe, the Mediterranean, and the Pacific."},
+  {label:"D. Shift resources back toward civilian consumer goods immediately",desc:"Reduce war contracts early to ease domestic shortages and restore civilian production.",delta:[-7,5,5,-8],score:-1,result:"Civilian availability may improve, but premature reductions can leave military operations short of critical supplies while the war continues.",lesson:"Demobilization and reconversion had to be balanced against ongoing military requirements."}
+ ]
+}
 ];
-const MAX=C.length*5,PASS=.8;
-let i=-1,score=0,log=[],pick=null,order=[],locked=false;
-const $=document.getElementById('app');
-function shuffle(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
-function img(c){return `<img class="ph" src="${c.img}" alt="${c.cap}" onerror="this.outerHTML='<div class=&quot;ph fb&quot;>${c.cap.replace(/'/g,'')}</div>'"><p class="cap">${c.cap}</p>`}
-function top(){return `<div class="top"><span>Challenge ${i+1} of ${C.length}</span><span>Score: ${score}</span></div><div class="bar"><i style="width:${(i/C.length)*100}%"></i></div>`}
-function intro(){$.innerHTML=`<div class="card"><h2>The White House, December 8, 1941</h2>
-<p><b>My fellow Americans:</b></p>
-<p>Yesterday, December 7, Japanese forces bombed Pearl Harbor. Our nation is now at war with Japan, and Germany and Italy have declared war on us. The fight will be won on battlefields, and it will also be won in our factories, farms, railroads, and homes.</p>
-<div class="def"><b>The home front</b> is everything civilians do at home to support a war: building weapons, growing food, saving fuel, buying bonds, and working in the factories, while the military fights overseas.</div>
-<p>Over the next ten challenges you will allocate resources and make policy decisions. Read each briefing and use its numbers. Some choices sound sensible and are not. Our goal is a score of <b>80% or higher (${PASS*MAX} of ${MAX} points)</b>.</p>
-<p><i>- Franklin D. Roosevelt (classroom dramatization, not an actual quotation)</i></p>
-<button class="btn" onclick="next()">Begin mobilization</button></div>`}
-function next(){i++;if(i>=C.length)return end();const c=C[i];pick=null;locked=false;order=shuffle(c.o);
-$.innerHTML=top()+`<div class="card"><h2>${c.t}</h2><h3>${c.s}</h3>${img(c)}<p>${c.b}</p><h3>Your decision</h3><div id="opts"></div><button class="btn" id="lock" disabled onclick="lock()">Lock in answer</button></div>`;drawOpts();window.scrollTo(0,0)}
-function drawOpts(){document.getElementById('opts').innerHTML=order.map((o,k)=>`<button class="opt ${pick===k?'sel':''}" onclick="sel(${k})">${'ABCD'[k]}. ${o[0]}</button>`).join('')}
-function sel(k){pick=k;drawOpts();document.getElementById('lock').disabled=false}
-function lock(){const c=C[i],o=order[pick],p=o[1],best=c.o.find(x=>x[1]==5);score+=p;log.push(p);
-$.innerHTML=top()+`<div class="card"><h2>Discovery: ${c.t}</h2><div class="pts ${p>0?'good':'bad'}">${p>0?'+':''}${p} points</div>
-<p><b>You chose:</b> ${o[0]}</p>${p<5?`<div class="best"><b>Best answer (+5):</b> ${best[0]}</div>`:''}
-<p><b>What America did:</b> ${c.d}</p><button class="btn" onclick="next()">${i==C.length-1?'See final results':'Next challenge'}</button></div>`;window.scrollTo(0,0)}
-function end(){const pct=Math.max(0,Math.round(score/MAX*100)),win=score/MAX>=PASS;
-$.innerHTML=`<div class="card"><h1 style="color:var(--navy)">${win?'Victory on the home front':'The home front falls short'}</h1><div class="pts ${win?'good':'bad'}">${score} of ${MAX} points (${pct}%)</div>
-<p>${win?'You met the 80% goal. Your decisions kept American production moving.':'You did not reach 80%. Review the discovery notes and try again with the data in each briefing.'}</p>
-<table><tr><th>Challenge</th><th>Points</th></tr>${C.map((c,k)=>`<tr><td>${k+1}. ${c.t}</td><td>${log[k]>0?'+':''}${log[k]}</td></tr>`).join('')}</table>
-<button class="btn" onclick="i=-1;score=0;log=[];intro()">Play again</button></div>`}
-intro();
-</script></body></html>
+
+let index=0;
+let score=0;
+let resources={production:50,supplies:50,support:50,readiness:50};
+let history=[];
+let answered=false;
+
+const $ = id => document.getElementById(id);
+
+function startGame(){
+  index=0; score=0;
+  resources={production:50,supplies:50,support:50,readiness:50};
+  history=[]; answered=false;
+  $("start").classList.add("hidden");
+  $("finish").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  renderChallenge();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function clamp(n){ return Math.max(0,Math.min(100,n)); }
+
+function updateStats(){
+  $("production").textContent=resources.production;
+  $("supplies").textContent=resources.supplies;
+  $("support").textContent=resources.support;
+  $("readiness").textContent=resources.readiness;
+  $("points").textContent="Score: "+score;
+  $("progress").style.width=(index/challenges.length*100)+"%";
+}
+
+function renderChallenge(){
+  answered=false;
+  const c=challenges[index];
+  $("phase").textContent=`Challenge ${index+1} of ${challenges.length} • ${c.date}`;
+  $("title").textContent=c.title;
+  $("briefing").textContent=c.briefing;
+  $("orders").textContent=c.orders;
+  $("caption").textContent=c.caption;
+  $("photo").alt="Historical image illustrating: "+c.title;
+  $("photo").src=c.image;
+  $("photo").onerror=function(){
+    this.onerror=null;
+    this.removeAttribute("src");
+    this.style.minHeight="180px";
+    this.alt="Historical image unavailable. Read the caption and consult the National Archives links in the final report.";
+    this.style.padding="30px";
+    this.style.color="#172b43";
+  };
+  $("photo").onload=function(){
+    this.style.padding="0";
+    this.style.minHeight="0";
+  };
+
+  $("options").innerHTML="";
+  c.options.forEach((o,i)=>{
+    const b=document.createElement("button");
+    b.className="option";
+    const strong=document.createElement("strong");
+    strong.textContent=o.label;
+    const desc=document.createElement("span");
+    desc.textContent=o.desc;
+    const small=document.createElement("small");
+    small.textContent="Potential effects: "+formatDelta(o.delta);
+    b.append(strong,desc,small);
+    b.addEventListener("click",()=>chooseOption(i));
+    $("options").appendChild(b);
+  });
+  $("feedback").className="hidden";
+  $("feedback").textContent="";
+  $("next").classList.add("hidden");
+  updateStats();
+}
+
+function formatDelta(d){
+  const names=["Production","Supplies","Public Support","Readiness"];
+  return d.map((v,i)=>names[i]+" "+(v>0?"+":"")+v).join(" • ");
+}
+
+function chooseOption(choiceIndex){
+  if(answered)return;
+  answered=true;
+  const c=challenges[index];
+  const o=c.options[choiceIndex];
+  const buttons=[...$("options").querySelectorAll("button")];
+  buttons.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===choiceIndex)b.classList.add("selected");
+  });
+  score+=o.score;
+  resources.production=clamp(resources.production+o.delta[0]);
+  resources.supplies=clamp(resources.supplies+o.delta[1]);
+  resources.support=clamp(resources.support+o.delta[2]);
+  resources.readiness=clamp(resources.readiness+o.delta[3]);
+  history.push({
+    challenge:c.title,choice:o.label,score:o.score,
+    result:o.result,lesson:o.lesson,delta:o.delta
+  });
+  updateStats();
+  const box=$("feedback");
+  box.classList.remove("hidden");
+  box.className="good";
+  if(o.score<0)box.className="bad";
+  else if(o.score===0)box.className="neutral";
+  const heading=document.createElement("h3");
+  heading.textContent="Decision recorded";
+  const result=document.createElement("p");
+  result.textContent=o.result;
+  const lesson=document.createElement("p");
+  const bold=document.createElement("strong");
+  bold.textContent="Historical lesson: ";
+  lesson.append(bold,document.createTextNode(o.lesson));
+  const change=document.createElement("p");
+  change.className="note";
+  change.textContent="Resource change: "+formatDelta(o.delta);
+  box.replaceChildren(heading,result,lesson,change);
+  $("next").textContent=index===challenges.length-1?
+    "SUBMIT FINAL REPORT":"ACCEPT REPORT & CONTINUE";
+  $("next").classList.remove("hidden");
+}
+
+function nextChallenge(){
+  if(!answered)return;
+  index++;
+  if(index>=challenges.length){finishGame();return;}
+  renderChallenge();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function finishGame(){
+  $("game").classList.add("hidden");
+  $("finish").classList.remove("hidden");
+  $("progress").style.width="100%";
+  $("fp").textContent=resources.production;
+  $("fs").textContent=resources.supplies;
+  $("fu").textContent=resources.support;
+  $("fr").textContent=resources.readiness;
+  $("scoreReport").textContent=
+    "Decision score: "+score+" out of 40 possible points. "+
+    "You completed all ten decisions. The score rewards historically informed "+
+    "trade-offs; it does not mean that history has one perfect answer.";
+  const average=(resources.production+resources.supplies+
+    resources.support+resources.readiness)/4;
+  let outcome;
+  if(average>=70)outcome="Your administration built a strong overall mobilization system. Your record shows how coordination, resources, and public cooperation can reinforce one another.";
+  else if(average>=50)outcome="Your administration maintained a workable war effort, but several resource pressures remain. Your final report should explain which trade-offs were necessary and which could have been avoided.";
+  else outcome="Your administration faces serious weaknesses in national mobilization. Your final report should identify which decisions undermined supply, production, public cooperation, or readiness.";
+  $("ending").textContent=outcome+
+    " Remember: a high score cannot excuse violations of civil rights. Evaluate security decisions on evidence and democratic principles as well as immediate outcomes.";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function printReport(){
+  const response=$("reflection").value.trim();
+  if(!response){
+    alert("Complete your final briefing before printing.");
+    $("reflection").focus();
+    return;
+  }
+  const win=window.open("","_blank");
+  if(!win){
+    alert("Allow pop-ups for this page to print your report, or use your browser's Print command.");
+    return;
+  }
+  const esc=s=>String(s).replace(/[&<>"']/g,ch=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[ch]));
+  const rows=history.map((h,i)=>
+    `<li><strong>${i+1}. ${esc(h.challenge)}</strong><br>`+
+    `Decision: ${esc(h.choice)}<br>`+
+    `Historical lesson: ${esc(h.lesson)}</li>`).join("");
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8">
+  <title>Presidential Debrief</title><style>
+  body{font:16px Georgia,serif;max-width:850px;margin:35px auto;line-height:1.5}
+  h1,h2{color:#172b43}li{margin:12px 0} .stats{border:1px solid #aaa;padding:10px}
+  </style></head><body><h1>FDR's Home Front Command</h1>
+  <h2>Presidential Mission Debrief</h2>
+  <p><strong>Decision score:</strong> ${score} / 40</p>
+  <p class="stats"><strong>Final resources:</strong><br>
+  Production: ${resources.production} / 100<br>
+  Supplies: ${resources.supplies} / 100<br>
+  Public Support: ${resources.support} / 100<br>
+  Readiness: ${resources.readiness} / 100</p>
+  <h2>Decision record</h2><ol>${rows}</ol>
+  <h2>Final presidential briefing</h2><p>${esc(response).replace(/\n/g,"<br>")}</p>
+  <p><em>Classroom simulation. Resource scores are illustrative, not historical data.</em></p>
+  <script>window.onload=()=>window.print();<\/script>
+  </body></html>`);
+  win.document.close();
+}
+
+function restartGame(){
+  $("reflection").value="";
+  $("finish").classList.add("hidden");
+  $("start").classList.remove("hidden");
+  $("game").classList.add("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
